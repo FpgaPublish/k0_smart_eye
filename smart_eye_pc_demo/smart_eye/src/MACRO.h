@@ -24,6 +24,7 @@
 
 #define CODE_UART_INFO 0x11000002
 #define CODE_UVC_INFO  0x11000003
+#define CODE_FILE_INFO 0x11000004
 //PC(1) and PS(2) code
 #define CODE_HELLO_PS 0x12210000
 #define CODE_BMP_FILE 0x12210001
@@ -58,3 +59,8 @@ Q_DECLARE_METATYPE(SUdpPck)
 #define TEXT_COLOR_GREEN(STRING)  ("<font color=green>" + STRING + "</font>" "<font color=black> </font>")
 #define TEXT_COLOR_BLACK(STRING)  ("<font color=black>" + STRING + "</font>" "<font color=black> </font>")
 #define TEXT_COLOR_WHITE(STRING)  ("<font color=white>" + STRING + "</font>" "<font color=black> </font>")
+
+// =====================================================
+// file mdle info
+#define P_VIDEO_FIFO 0
+#define P_LOG_FILE   1

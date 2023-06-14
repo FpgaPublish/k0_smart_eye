@@ -17,6 +17,8 @@
 // Additional Comments:
 //          1. path = D:/demo rather than D:/demo/
 //////////////////////////////////////////////////////////////////////////////////
+// =====================================================
+// file source
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QTimer>
@@ -34,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     //qDebug() << p_icon_app;
     this->setWindowIcon(QIcon(p_icon_app));
     // =====================================================
-    // mesu bar param
+    // control win
     // --------------------------------------------
     // net param
     u_udp_subs = new udp_subs;
@@ -43,10 +45,17 @@ MainWindow::MainWindow(QWidget *parent)
     // uart param
     u_uart_blck = new uart_blck;
     connect(u_uart_blck,&uart_blck::spd_trig,this,&MainWindow::uart_spd_driv);
-
-
+    // --------------------------------------------
+    // uvc param
+    u_uvc_blck = new uvc_blck;
     // =====================================================
-    // win insert init
+    // file connect
+    u_file_mdle = new file_mdle;
+    connect(u_file_mdle,&file_mdle::update_trig,
+            u_uvc_blck,&uvc_blck::update_file_path);
+    u_file_mdle->m_get_path();
+    // =====================================================
+    // info win
     // --------------------------------------------
     // info init
     //ui->ui_info_log->setText("[0x11000000]info: Welcome to Imag Recognize\n\r");
@@ -57,26 +66,30 @@ MainWindow::MainWindow(QWidget *parent)
     //list to feedback info
     connect(u_udp_subs,&udp_subs::info_trig,this,&MainWindow::info_blck);
     connect(u_uart_blck,&uart_blck::info_trig,this,&MainWindow::info_blck);
+    connect(u_uvc_blck,&uvc_blck::info_trig,this,&MainWindow::info_blck);
+    connect(u_file_mdle,&file_mdle::info_trig,this,&MainWindow::info_blck);
     //first view
     ui->tab_console->setCurrentIndex(0);
 
+    // =====================================================
+    // dispaly win
     // --------------------------------------------
     // welcome widget init
     ui->ui_display->clear();
     u_welcome_mdle = new welcome_mdle;
     ui->ui_display->insertTab(0,u_welcome_mdle,"welcome");
-    // --------------------------------------------
-    // usv camera
-    u_uvc_blck = new uvc_blck;
-    connect(u_uvc_blck,&uvc_blck::info_trig,this,&MainWindow::info_blck);
+
 }
 
 MainWindow::~MainWindow()
 {
+    // --------------------------------------------
+    // delete it
     delete u_uart_blck;
     delete u_udp_subs;
     delete u_welcome_mdle;
     delete u_uvc_blck;
+    delete u_file_mdle;
     delete ui;
 }
 
@@ -195,10 +208,18 @@ void MainWindow::on_ui_uvc_clicked()
     ui->ui_uvc_spd->setMaximum(1920*1280);
     ui->ui_uvc_spd->setMinimum(0);
     ui->ui_uvc_spd->setValue(spd);
+    u_uvc_blck->m_open_camera_stream(1,30);
 }
 
 void MainWindow::on_action_uvc_triggered()
 {
+    u_uvc_blck->m_open_camera_stream(0,0);
     u_uvc_blck->show();
+}
+
+
+void MainWindow::on_action_file_triggered()
+{
+    u_file_mdle->show();
 }
 

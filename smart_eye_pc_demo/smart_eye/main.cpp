@@ -1,14 +1,34 @@
+//////////////////////////////////////////////////////////////////////////////////
+// Company: Fpga Publish
+// Engineer: F
+//
+// Create Date: 2023 12:05:15
+// Design Name:
+// Module Name: main.cpp
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description:
+//
+// Dependencies:
+//
+// Revision: 0.01
+// Revision 0.01 - File Created
+// Additional Comments:
+//          1. path = D:/demo rather than D:/demo/
+//////////////////////////////////////////////////////////////////////////////////
 #include "mainwindow.h"
-
+// =====================================================
+// file include
 #include <QApplication>
 #include "./src/MACRO.h"
 #include <QStyleFactory>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.setWindowTitle(APP_NAME);
-    w.show();
+    MainWindow mw;
+    mw.setWindowTitle(APP_NAME);
+    mw.show();
     //set dark
     qApp->setStyle(QStyleFactory::create("Fusion"));
     QPalette palette;

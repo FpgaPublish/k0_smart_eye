@@ -114,7 +114,7 @@ public:
         label->setText(QApplication::translate("uvc_blck", "\350\256\276\345\244\207\345\220\215\347\247\260", nullptr));
         label_2->setText(QApplication::translate("uvc_blck", "\345\210\206\350\276\250\347\216\207", nullptr));
         label_3->setText(QApplication::translate("uvc_blck", "\345\270\247\347\216\207", nullptr));
-        ui_read->setText(QApplication::translate("uvc_blck", "\351\273\230\350\256\244", nullptr));
+        ui_read->setText(QApplication::translate("uvc_blck", "\350\257\273\345\217\226", nullptr));
         ui_write->setText(QApplication::translate("uvc_blck", "\345\206\231\345\205\245", nullptr));
     } // retranslateUi
 

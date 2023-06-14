@@ -5,6 +5,7 @@
 #include <QCameraInfo>
 #include <QList>
 #include "../MACRO.h"
+#include "./videosurface_driv/videosurface_driv.h"
 namespace Ui {
 class uvc_blck;
 }
@@ -37,6 +38,20 @@ public:
 signals:
     //info
     void info_trig(quint32,quint32,QString,QString);
+public:
+    void m_open_camera_stream(bool flag,int max_imag);
+public slots:
+    void update_file_path(QList<QString>);
+    //solve camera data
+private slots:
+    void recv_video_frame(QVideoFrame);
+
+private:
+    QImage video_imags;
+    int    nb_imag_save;
+    int    imag_save_cnt;
+    QString p_video_path;
+    videosurface_driv *vsd;
 };
 
 #endif // UVC_BLCK_H

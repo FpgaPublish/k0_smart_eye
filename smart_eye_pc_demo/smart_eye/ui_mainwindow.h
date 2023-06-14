@@ -35,6 +35,7 @@ public:
     QAction *action_net;
     QAction *action_uart;
     QAction *action_uvc;
+    QAction *action_file;
     QWidget *ui_win;
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *ui_imag_reco;
@@ -91,6 +92,8 @@ public:
         action_uart->setObjectName(QString::fromUtf8("action_uart"));
         action_uvc = new QAction(MainWindow);
         action_uvc->setObjectName(QString::fromUtf8("action_uvc"));
+        action_file = new QAction(MainWindow);
+        action_file->setObjectName(QString::fromUtf8("action_file"));
         ui_win = new QWidget(MainWindow);
         ui_win->setObjectName(QString::fromUtf8("ui_win"));
         horizontalLayout_4 = new QHBoxLayout(ui_win);
@@ -110,7 +113,7 @@ public:
         ui_flow->setLayoutDirection(Qt::LeftToRight);
         ui_flow_cnt = new QWidget();
         ui_flow_cnt->setObjectName(QString::fromUtf8("ui_flow_cnt"));
-        ui_flow_cnt->setGeometry(QRect(0, 0, 218, 285));
+        ui_flow_cnt->setGeometry(QRect(0, 0, 218, 300));
         gridLayout = new QGridLayout(ui_flow_cnt);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         ui_uart = new QPushButton(ui_flow_cnt);
@@ -151,14 +154,14 @@ public:
         ui_flow->addItem(ui_flow_cnt, QString::fromUtf8("\351\200\232\344\277\241\345\215\217\350\256\256"));
         ui_flow_load = new QWidget();
         ui_flow_load->setObjectName(QString::fromUtf8("ui_flow_load"));
-        ui_flow_load->setGeometry(QRect(0, 0, 218, 285));
+        ui_flow_load->setGeometry(QRect(0, 0, 218, 300));
         ui_file_load = new QPushButton(ui_flow_load);
         ui_file_load->setObjectName(QString::fromUtf8("ui_file_load"));
         ui_file_load->setGeometry(QRect(20, 50, 89, 24));
         ui_flow->addItem(ui_flow_load, QString::fromUtf8("\346\225\260\346\215\256\345\212\240\350\275\275"));
         ui_flow_solve = new QWidget();
         ui_flow_solve->setObjectName(QString::fromUtf8("ui_flow_solve"));
-        ui_flow_solve->setGeometry(QRect(0, 0, 218, 285));
+        ui_flow_solve->setGeometry(QRect(0, 0, 218, 300));
         ui_signal = new QPushButton(ui_flow_solve);
         ui_signal->setObjectName(QString::fromUtf8("ui_signal"));
         ui_signal->setGeometry(QRect(20, 20, 89, 24));
@@ -168,7 +171,7 @@ public:
         ui_flow->addItem(ui_flow_solve, QString::fromUtf8("\346\225\260\346\215\256\345\244\204\347\220\206"));
         ui_imag_result = new QWidget();
         ui_imag_result->setObjectName(QString::fromUtf8("ui_imag_result"));
-        ui_imag_result->setGeometry(QRect(0, 0, 218, 285));
+        ui_imag_result->setGeometry(QRect(0, 0, 218, 300));
         ui_chart = new QPushButton(ui_imag_result);
         ui_chart->setObjectName(QString::fromUtf8("ui_chart"));
         ui_chart->setGeometry(QRect(20, 20, 89, 24));
@@ -276,6 +279,7 @@ public:
         menubar->addAction(menuconnect->menuAction());
         menubar->addAction(menuparameter->menuAction());
         menubar->addAction(menuhelp->menuAction());
+        menufile->addAction(action_file);
         menuparameter->addAction(action_net);
         menuparameter->addAction(action_uart);
         menuparameter->addAction(action_uvc);
@@ -296,6 +300,7 @@ public:
         action_net->setText(QApplication::translate("MainWindow", "\347\275\221\345\217\243", nullptr));
         action_uart->setText(QApplication::translate("MainWindow", "\344\270\262\345\217\243", nullptr));
         action_uvc->setText(QApplication::translate("MainWindow", "\347\233\221\346\216\247", nullptr));
+        action_file->setText(QApplication::translate("MainWindow", "\351\205\215\347\275\256", nullptr));
         ui_uart->setText(QApplication::translate("MainWindow", "\344\270\262\345\217\243\351\200\232\344\277\241", nullptr));
         ui_net->setText(QApplication::translate("MainWindow", "\347\275\221\345\217\243\351\200\232\344\277\241", nullptr));
         ui_uvc->setText(QApplication::translate("MainWindow", "\347\233\221\346\216\247\351\200\232\344\277\241", nullptr));

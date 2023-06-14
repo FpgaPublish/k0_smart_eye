@@ -33,6 +33,7 @@ QT_END_NAMESPACE
 #include "./src/welcome_mdle/welcome_mdle.h"
 #include "./src/uart_blck/uart_blck.h"
 #include "./src/uvc_blck/uvc_blck.h"
+#include "./src/file_mdle/file_mdle.h"
 
 class MainWindow : public QMainWindow
 {
@@ -59,7 +60,6 @@ private:
 private slots:
     void info_blck(quint32,quint32,QString,QString);
     void net_spd_driv(float);
-
     void on_ui_net_clicked();
 
 private:
@@ -84,10 +84,15 @@ private slots:
     void on_ui_uvc_clicked();
     void on_action_uvc_triggered();
 
+    void on_action_file_triggered();
+
 private:
     // --------------------------------------------
     // usv camera
     uvc_blck * u_uvc_blck;
+    // --------------------------------------------
+    // file control set
+    file_mdle *u_file_mdle;
 
 };
 #endif // MAINWINDOW_H
