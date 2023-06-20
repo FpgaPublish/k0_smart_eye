@@ -34,6 +34,7 @@ QT_END_NAMESPACE
 #include "./src/uart_blck/uart_blck.h"
 #include "./src/uvc_blck/uvc_blck.h"
 #include "./src/file_mdle/file_mdle.h"
+#include "./src/flow_blck/flow_blck.h"
 
 class MainWindow : public QMainWindow
 {
@@ -86,6 +87,8 @@ private slots:
 
     void on_action_file_triggered();
 
+    void on_ui_flow_ctrl_clicked();
+
 private:
     // --------------------------------------------
     // usv camera
@@ -93,6 +96,9 @@ private:
     // --------------------------------------------
     // file control set
     file_mdle *u_file_mdle;
+    // --------------------------------------------
+    // flow control win
+    flow_blck *u_flow_blck;
 
 };
 #endif // MAINWINDOW_H

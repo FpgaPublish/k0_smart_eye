@@ -106,6 +106,57 @@ void udp_subs::send_udp_spd()
     emit spd_trig(n_spd);
 }
 
+void udp_subs::m_send_udp_bmp(QString pns_bmp)
+{
+    QImage bmp(pns_bmp);
+    bmp = bmp.convertToFormat(QImage::Format_RGB888);
+    uchar *bits = bmp.bits();
+    for(int i = 0; i < bmp.height(); i++)
+    {
+        qDebug() << bits[i];
+    }
+    //imag info
+    int imag_h = bmp.height();
+    int imag_w = bmp.width();
+    //auto match width and send
+    if(imag_w * 3 < 960)
+    {
+        pkg_send.pkg_len  = imag_w;
+        pkg_send.pkg_wid  = imag_h * 3;
+    }
+    else if(imag_w * 3 < 960 * 2)
+    {
+        pkg_send.pkg_len  = imag_w / 2;
+        pkg_send.pkg_wid  = imag_h * 3 * 2;
+    }
+    else if(imag_w * 3 < 960 * 4)
+    {
+        pkg_send.pkg_len  = imag_w / 4;
+        pkg_send.pkg_wid  = imag_h * 3 * 4;
+    }
+    else
+    {
+        pkg_send.pkg_len  = imag_w / 8;
+        pkg_send.pkg_wid  = imag_h * 3 * 8;
+    }
+    pkg_send.pkg_code = CODE_BMP_FILE;
+    //send udp data
+    uint j = 0;
+    while(j < pkg_send.pkg_wid)
+    {
+        pkg_send.pkg_xor  = 0;
+        for(uint i = 0; i < pkg_send.pkg_len; i++)
+        {
+            pkg_send.pkg_dat[i] = i;
+            pkg_send.pkg_xor = pkg_send.pkg_xor ^ i;
+        }
+        send_udp_pkg();
+        wait_signals(1);
+        j++ ;
+    }
+
+}
+
 void udp_subs::on_buttonBox_accepted()
 {
     // --------------------------------------------

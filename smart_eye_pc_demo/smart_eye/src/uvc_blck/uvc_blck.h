@@ -52,6 +52,9 @@ private:
     int    imag_save_cnt;
     QString p_video_path;
     videosurface_driv *vsd;
+signals:
+    //add imag update trig
+    void bmp_trig(QString );
 };
 
 #endif // UVC_BLCK_H

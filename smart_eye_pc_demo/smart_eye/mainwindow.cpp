@@ -78,6 +78,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->ui_display->clear();
     u_welcome_mdle = new welcome_mdle;
     ui->ui_display->insertTab(0,u_welcome_mdle,"welcome");
+    // --------------------------------------------
+    // flow control win
+    u_flow_blck = new flow_blck;
+    connect(u_uvc_blck,&uvc_blck::bmp_trig,u_flow_blck,&flow_blck::m_bmp_in);
+    connect(u_flow_blck,&flow_blck::bmp_udp_trig,u_udp_subs,&udp_subs::m_send_udp_bmp);
+
 
 }
 
@@ -221,5 +227,12 @@ void MainWindow::on_action_uvc_triggered()
 void MainWindow::on_action_file_triggered()
 {
     u_file_mdle->show();
+}
+
+
+void MainWindow::on_ui_flow_ctrl_clicked()
+{
+    ui->ui_display->insertTab(1,u_flow_blck,"flow_ctrl");
+    ui->ui_display->setCurrentIndex(1);
 }
 

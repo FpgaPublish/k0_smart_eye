@@ -176,7 +176,9 @@ void uvc_blck::recv_video_frame(QVideoFrame cframe)
     {
         //qDebug() << p_video_path+QString::number(nb_imag_save)+".bmp";
         video_imags.save(p_video_path+QString::number(nb_imag_save)+".bmp");
+        emit bmp_trig(p_video_path+QString::number(nb_imag_save)+".bmp");
     }
+    //clear this frame
     cframe.unmap();
     if(imag_save_cnt < nb_imag_save)
     {

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_uvc_blck_t {
-    QByteArrayData data[9];
-    char stringdata0[120];
+    QByteArrayData data[10];
+    char stringdata0[129];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,18 +35,19 @@ static const qt_meta_stringdata_uvc_blck_t qt_meta_stringdata_uvc_blck = {
 QT_MOC_LITERAL(0, 0, 8), // "uvc_blck"
 QT_MOC_LITERAL(1, 9, 9), // "info_trig"
 QT_MOC_LITERAL(2, 19, 0), // ""
-QT_MOC_LITERAL(3, 20, 18), // "on_ui_read_clicked"
-QT_MOC_LITERAL(4, 39, 19), // "on_ui_write_clicked"
-QT_MOC_LITERAL(5, 59, 16), // "update_file_path"
-QT_MOC_LITERAL(6, 76, 14), // "QList<QString>"
-QT_MOC_LITERAL(7, 91, 16), // "recv_video_frame"
-QT_MOC_LITERAL(8, 108, 11) // "QVideoFrame"
+QT_MOC_LITERAL(3, 20, 8), // "bmp_trig"
+QT_MOC_LITERAL(4, 29, 18), // "on_ui_read_clicked"
+QT_MOC_LITERAL(5, 48, 19), // "on_ui_write_clicked"
+QT_MOC_LITERAL(6, 68, 16), // "update_file_path"
+QT_MOC_LITERAL(7, 85, 14), // "QList<QString>"
+QT_MOC_LITERAL(8, 100, 16), // "recv_video_frame"
+QT_MOC_LITERAL(9, 117, 11) // "QVideoFrame"
 
     },
-    "uvc_blck\0info_trig\0\0on_ui_read_clicked\0"
-    "on_ui_write_clicked\0update_file_path\0"
-    "QList<QString>\0recv_video_frame\0"
-    "QVideoFrame"
+    "uvc_blck\0info_trig\0\0bmp_trig\0"
+    "on_ui_read_clicked\0on_ui_write_clicked\0"
+    "update_file_path\0QList<QString>\0"
+    "recv_video_frame\0QVideoFrame"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,30 +57,32 @@ static const uint qt_meta_data_uvc_blck[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    4,   39,    2, 0x06 /* Public */,
+       1,    4,   44,    2, 0x06 /* Public */,
+       3,    1,   53,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   48,    2, 0x08 /* Private */,
-       4,    0,   49,    2, 0x08 /* Private */,
-       5,    1,   50,    2, 0x0a /* Public */,
-       7,    1,   53,    2, 0x08 /* Private */,
+       4,    0,   56,    2, 0x08 /* Private */,
+       5,    0,   57,    2, 0x08 /* Private */,
+       6,    1,   58,    2, 0x0a /* Public */,
+       8,    1,   61,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::UInt, QMetaType::UInt, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,
+    QMetaType::Void, QMetaType::QString,    2,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 6,    2,
-    QMetaType::Void, 0x80000000 | 8,    2,
+    QMetaType::Void, 0x80000000 | 7,    2,
+    QMetaType::Void, 0x80000000 | 9,    2,
 
        0        // eod
 };
@@ -91,23 +94,24 @@ void uvc_blck::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->info_trig((*reinterpret_cast< quint32(*)>(_a[1])),(*reinterpret_cast< quint32(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
-        case 1: _t->on_ui_read_clicked(); break;
-        case 2: _t->on_ui_write_clicked(); break;
-        case 3: _t->update_file_path((*reinterpret_cast< QList<QString>(*)>(_a[1]))); break;
-        case 4: _t->recv_video_frame((*reinterpret_cast< QVideoFrame(*)>(_a[1]))); break;
+        case 1: _t->bmp_trig((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 2: _t->on_ui_read_clicked(); break;
+        case 3: _t->on_ui_write_clicked(); break;
+        case 4: _t->update_file_path((*reinterpret_cast< QList<QString>(*)>(_a[1]))); break;
+        case 5: _t->recv_video_frame((*reinterpret_cast< QVideoFrame(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 3:
+        case 4:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<QString> >(); break;
             }
             break;
-        case 4:
+        case 5:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -121,6 +125,13 @@ void uvc_blck::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             using _t = void (uvc_blck::*)(quint32 , quint32 , QString , QString );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&uvc_blck::info_trig)) {
                 *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (uvc_blck::*)(QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&uvc_blck::bmp_trig)) {
+                *result = 1;
                 return;
             }
         }
@@ -156,13 +167,13 @@ int uvc_blck::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
@@ -172,6 +183,13 @@ void uvc_blck::info_trig(quint32 _t1, quint32 _t2, QString _t3, QString _t4)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void uvc_blck::bmp_trig(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
