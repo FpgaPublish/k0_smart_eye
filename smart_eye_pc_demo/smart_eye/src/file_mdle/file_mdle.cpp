@@ -16,18 +16,19 @@ file_mdle::file_mdle(QWidget *parent) :
     ui->ui_file_ini->setReadOnly(true);
     QFile f(pns_ini);
     QFileInfo fi(pns_ini);
+
+    l_env_path.clear();
+    for(int j = 0; j < P_MAX_NUMB; j++)
+    {
+        l_env_path.append("/");
+    }
     //user set read
     if(fi.exists())
     {
         f.open(QIODevice::ReadOnly | QIODevice::Text);
 
-        l_env_path.clear();
-        for(int j = 0; j < NB_ENV; j++)
-        {
-            l_env_path.append("/");
-        }
         int i = 0;
-        while(!f.atEnd() && i < NB_ENV)
+        while(!f.atEnd() && i < P_MAX_NUMB)
         {
             QByteArray b_line =  f.readLine();
             QString s_line(b_line);
@@ -56,11 +57,13 @@ void file_mdle::on_ui_write_set_clicked()
 {
     l_env_path.replace(P_VIDEO_FIFO, ui->ui_dir_camera->text());
     l_env_path.replace(P_LOG_FILE, ui->ui_log_file->text());
+    l_env_path.replace(P_FPGA_FILE, ui->ui_fpga_file->text());
+
     QFile f(pns_ini);
     f.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream f_out(&f);
     f.seek(0);
-    for(int i = 0; i < NB_ENV; i++)
+    for(int i = 0; i < P_MAX_NUMB; i++)
     {
         f_out << l_env_path[i] << "\n";
     }
@@ -73,6 +76,8 @@ void file_mdle::on_ui_read_set_clicked()
 {
     ui->ui_dir_camera->setText(l_env_path[P_VIDEO_FIFO]);
     ui->ui_log_file->setText(l_env_path[P_LOG_FILE]);
+    ui->ui_fpga_file->setText(l_env_path[P_FPGA_FILE]);
+
 }
 
 QList<QString> file_mdle::m_get_path()

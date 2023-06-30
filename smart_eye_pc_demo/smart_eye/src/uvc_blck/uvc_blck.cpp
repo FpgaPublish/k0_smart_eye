@@ -159,7 +159,7 @@ void uvc_blck::m_open_camera_stream(bool flag,int max_imag)
 
 void uvc_blck::update_file_path(QList<QString> l_file)
 {
-    p_video_path = l_file[0];
+    p_video_path = l_file[P_VIDEO_FIFO];
 }
 
 void uvc_blck::recv_video_frame(QVideoFrame cframe)

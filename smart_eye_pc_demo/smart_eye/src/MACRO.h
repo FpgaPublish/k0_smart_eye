@@ -31,7 +31,7 @@
 
 #define CODE_UART_PS  0x00210002
 //PC(1) and PL(3) code
-
+#define CODE_FPGA_SET 0x13310000
 
 //add struct
 struct SUdpPck{
@@ -49,9 +49,6 @@ Q_DECLARE_METATYPE(SUdpPck)
 #define ERR_TYPE_MATCH    1
 #define ERR_NULL_VARIABLE 2
 
-#endif // MACRO_H
-
-
 // ==========================================================
 // color control
 #define TEXT_COLOR_RED(STRING)    ("<font color=red>" + STRING + "</font>" "<font color=black> </font>")
@@ -62,5 +59,12 @@ Q_DECLARE_METATYPE(SUdpPck)
 
 // =====================================================
 // file mdle info
+#define P_MAX_NUMB   10
 #define P_VIDEO_FIFO 0
 #define P_LOG_FILE   1
+#define P_FPGA_FILE  2
+
+
+
+#endif // MACRO_H
+

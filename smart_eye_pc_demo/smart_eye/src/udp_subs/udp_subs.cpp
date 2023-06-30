@@ -6,7 +6,8 @@
 #include <QTimer>
 #include <qelapsedtimer.h>
 #include <QDebug>
-
+#include <QFile>
+#include <QFileInfo>
 
 udp_subs::udp_subs(QWidget *parent) :
     QDialog(parent),
@@ -85,6 +86,7 @@ void udp_subs::send_udp_spd()
     pkg_send.pkg_code = CODE_HELLO_PS;
     pkg_send.pkg_len  = 960;
     pkg_send.pkg_wid  = 1;
+    pkg_send.pkg_wid  = pkg_send.pkg_wid << 16 | 1;
     int j = 0;
     QElapsedTimer timer;
     timer.start();
@@ -121,38 +123,109 @@ void udp_subs::m_send_udp_bmp(QString pns_bmp)
     //auto match width and send
     if(imag_w * 3 < 960)
     {
-        pkg_send.pkg_len  = imag_w;
-        pkg_send.pkg_wid  = imag_h * 3;
+        pkg_send.pkg_len  = imag_w * 3;
+        pkg_send.pkg_wid  = imag_h ;
     }
     else if(imag_w * 3 < 960 * 2)
     {
-        pkg_send.pkg_len  = imag_w / 2;
-        pkg_send.pkg_wid  = imag_h * 3 * 2;
+        pkg_send.pkg_len  = imag_w * 3 / 2;
+        pkg_send.pkg_wid  = imag_h * 2;
     }
     else if(imag_w * 3 < 960 * 4)
     {
-        pkg_send.pkg_len  = imag_w / 4;
-        pkg_send.pkg_wid  = imag_h * 3 * 4;
+        pkg_send.pkg_len  = imag_w * 3/ 4;
+        pkg_send.pkg_wid  = imag_h * 4;
     }
     else
     {
-        pkg_send.pkg_len  = imag_w / 8;
-        pkg_send.pkg_wid  = imag_h * 3 * 8;
+        pkg_send.pkg_len  = imag_w * 3 / 8;
+        pkg_send.pkg_wid  = imag_h * 8;
     }
     pkg_send.pkg_code = CODE_BMP_FILE;
     //send udp data
     uint j = 0;
-    while(j < pkg_send.pkg_wid)
+    uint sum_wid = pkg_send.pkg_wid;
+    pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
+    while(j < sum_wid)
     {
         pkg_send.pkg_xor  = 0;
+        pkg_send.pkg_wid = pkg_send.pkg_wid | (j+1);
         for(uint i = 0; i < pkg_send.pkg_len; i++)
         {
-            pkg_send.pkg_dat[i] = i;
-            pkg_send.pkg_xor = pkg_send.pkg_xor ^ i;
+            pkg_send.pkg_dat[i] = bits[i + j * pkg_send.pkg_len];
+            pkg_send.pkg_xor = pkg_send.pkg_xor ^ pkg_send.pkg_dat[i];
         }
         send_udp_pkg();
         wait_signals(1);
+        pkg_send.pkg_wid = pkg_send.pkg_wid & 0xffff0000;
         j++ ;
+    }
+
+}
+
+void udp_subs::m_send_udp_dat(QString pns_dat,quint32 code)
+{
+    QFile f(pns_dat);
+    QFileInfo fi(pns_dat);
+    QList<quint32> l_dat_hex;
+    switch (code)
+    {
+    case CODE_FPGA_SET:
+        if(!fi.exists())
+        {
+            QString info = "no file " + pns_dat + " to read";
+            emit info_trig(0,CODE_FPGA_SET,"error",info);
+            return;
+        }
+        f.open(QIODevice::ReadOnly | QIODevice::Text);
+        l_dat_hex.clear();
+        int i = 0;
+        while(!f.atEnd())
+        {
+            bool ok;
+            QByteArray b_line =  f.readLine();
+            QString s_line(b_line);
+            s_line.remove("\n");
+            l_dat_hex.append(QString::number(s_line.toInt(),16).toInt(&ok,16));
+
+            i ++;
+        }
+
+        qDebug() << l_dat_hex;
+        // --------------------------------------------
+        // send data
+        pkg_send.pkg_code = CODE_FPGA_SET;
+        pkg_send.pkg_len  = l_dat_hex.size() * 4;
+        pkg_send.pkg_wid  = 1;
+        pkg_send.pkg_xor  = 0;
+        qDebug() << l_dat_hex.size();
+        pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
+        for(int i = 0; i < l_dat_hex.size(); i++)
+        {
+            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >> 24;
+            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >> 16;
+            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >>  8;
+            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >>  0;
+            pkg_send.pkg_xor = pkg_send.pkg_xor ^ pkg_send.pkg_dat[i*4+0]
+                                                ^ pkg_send.pkg_dat[i*4+1]
+                                                ^ pkg_send.pkg_dat[i*4+2]
+                                                ^ pkg_send.pkg_dat[i*4+3];
+
+        }
+        pkg_send.pkg_wid = pkg_send.pkg_wid | (1); //update cur width
+
+        send_udp_pkg();
+        if(wait_signals(1000))
+        {
+            QString info = "fpga cmd download ok";
+            emit info_trig(0,CODE_FPGA_SET,"info",info);
+        }
+        else
+        {
+            QString info = "fpga cmd download error";
+            emit info_trig(0,CODE_FPGA_SET,"error",info);
+        }
+        break;
     }
 
 }

@@ -57,6 +57,7 @@ signals:
     // UDP send bmp
 public slots:
     void    m_send_udp_bmp(QString pns_bmp);
+    void    m_send_udp_dat(QString pns_dat,quint32 code);
 
 };
 
