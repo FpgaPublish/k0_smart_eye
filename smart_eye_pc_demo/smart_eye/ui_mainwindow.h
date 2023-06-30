@@ -51,7 +51,8 @@ public:
     QPushButton *ui_uvc;
     QProgressBar *ui_uvc_spd;
     QWidget *ui_flow_load;
-    QPushButton *ui_file_load;
+    QPushButton *ui_flow_ctrl;
+    QPushButton *ui_flow_fpga;
     QWidget *ui_flow_solve;
     QPushButton *ui_signal;
     QPushButton *ui_file_save;
@@ -155,9 +156,12 @@ public:
         ui_flow_load = new QWidget();
         ui_flow_load->setObjectName(QString::fromUtf8("ui_flow_load"));
         ui_flow_load->setGeometry(QRect(0, 0, 218, 300));
-        ui_file_load = new QPushButton(ui_flow_load);
-        ui_file_load->setObjectName(QString::fromUtf8("ui_file_load"));
-        ui_file_load->setGeometry(QRect(20, 50, 89, 24));
+        ui_flow_ctrl = new QPushButton(ui_flow_load);
+        ui_flow_ctrl->setObjectName(QString::fromUtf8("ui_flow_ctrl"));
+        ui_flow_ctrl->setGeometry(QRect(20, 50, 89, 24));
+        ui_flow_fpga = new QPushButton(ui_flow_load);
+        ui_flow_fpga->setObjectName(QString::fromUtf8("ui_flow_fpga"));
+        ui_flow_fpga->setGeometry(QRect(20, 100, 89, 24));
         ui_flow->addItem(ui_flow_load, QString::fromUtf8("\346\225\260\346\215\256\345\212\240\350\275\275"));
         ui_flow_solve = new QWidget();
         ui_flow_solve->setObjectName(QString::fromUtf8("ui_flow_solve"));
@@ -286,7 +290,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        ui_flow->setCurrentIndex(0);
+        ui_flow->setCurrentIndex(1);
         ui_display->setCurrentIndex(0);
         tab_console->setCurrentIndex(0);
 
@@ -305,7 +309,8 @@ public:
         ui_net->setText(QApplication::translate("MainWindow", "\347\275\221\345\217\243\351\200\232\344\277\241", nullptr));
         ui_uvc->setText(QApplication::translate("MainWindow", "\347\233\221\346\216\247\351\200\232\344\277\241", nullptr));
         ui_flow->setItemText(ui_flow->indexOf(ui_flow_cnt), QApplication::translate("MainWindow", "\351\200\232\344\277\241\345\215\217\350\256\256", nullptr));
-        ui_file_load->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\345\212\240\350\275\275", nullptr));
+        ui_flow_ctrl->setText(QApplication::translate("MainWindow", "\346\265\201\347\250\213\347\256\241\347\220\206", nullptr));
+        ui_flow_fpga->setText(QApplication::translate("MainWindow", "FPGA\351\205\215\347\275\256", nullptr));
         ui_flow->setItemText(ui_flow->indexOf(ui_flow_load), QApplication::translate("MainWindow", "\346\225\260\346\215\256\345\212\240\350\275\275", nullptr));
         ui_signal->setText(QApplication::translate("MainWindow", "\344\277\241\345\217\267\350\275\254\345\255\230", nullptr));
         ui_file_save->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\350\275\254\345\255\230", nullptr));

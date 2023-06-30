@@ -21,7 +21,6 @@ private:
 private:
     QList<QString> l_env_path;
     QString pns_ini;
-    int NB_ENV = 10;
 signals:
     void    info_trig(quint32,quint32,QString,QString);
     void    update_trig(QList<QString>);

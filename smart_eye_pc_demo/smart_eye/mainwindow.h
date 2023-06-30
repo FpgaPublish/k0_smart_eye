@@ -34,7 +34,8 @@ QT_END_NAMESPACE
 #include "./src/uart_blck/uart_blck.h"
 #include "./src/uvc_blck/uvc_blck.h"
 #include "./src/file_mdle/file_mdle.h"
-
+#include "./src/flow_blck/flow_blck.h"
+#include "./src/fpga_subs/fpga_subs.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -50,8 +51,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    // wait signals solve
-    bool wait_signals(const char * signal, const unsigned int millisecond);
     // =====================================================
     // mesu bar param
     // --------------------------------------------
@@ -86,6 +85,10 @@ private slots:
 
     void on_action_file_triggered();
 
+    void on_ui_flow_ctrl_clicked();
+
+    void on_ui_flow_fpga_clicked();
+
 private:
     // --------------------------------------------
     // usv camera
@@ -93,6 +96,12 @@ private:
     // --------------------------------------------
     // file control set
     file_mdle *u_file_mdle;
+    // --------------------------------------------
+    // flow control win
+    flow_blck *u_flow_blck;
+    // --------------------------------------------
+    // fpga set
+    fpga_subs *u_fpga_subs;
 
 };
 #endif // MAINWINDOW_H

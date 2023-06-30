@@ -53,7 +53,11 @@ signals:
     void    pkg_trig();
     void    info_trig(quint32,quint32,QString,QString);
     void    spd_trig(float);
-
+    // --------------------------------------------
+    // UDP send bmp
+public slots:
+    void    m_send_udp_bmp(QString pns_bmp);
+    void    m_send_udp_dat(QString pns_dat,quint32 code);
 
 };
 

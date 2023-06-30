@@ -48,12 +48,18 @@ MainWindow::MainWindow(QWidget *parent)
     // --------------------------------------------
     // uvc param
     u_uvc_blck = new uvc_blck;
+    // --------------------------------------------
+    // fpga set
+    u_fpga_subs = new fpga_subs;
+    connect(u_fpga_subs,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
     // =====================================================
     // file connect
     u_file_mdle = new file_mdle;
     connect(u_file_mdle,&file_mdle::update_trig,
             u_uvc_blck,&uvc_blck::update_file_path);
-    u_file_mdle->m_get_path();
+    connect(u_file_mdle,&file_mdle::update_trig,
+            u_fpga_subs,&fpga_subs::update_file_path);
+    u_file_mdle->m_get_path(); //must connect before this
     // =====================================================
     // info win
     // --------------------------------------------
@@ -68,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(u_uart_blck,&uart_blck::info_trig,this,&MainWindow::info_blck);
     connect(u_uvc_blck,&uvc_blck::info_trig,this,&MainWindow::info_blck);
     connect(u_file_mdle,&file_mdle::info_trig,this,&MainWindow::info_blck);
+    connect(u_fpga_subs,&fpga_subs::info_trig,this,&MainWindow::info_blck);
     //first view
     ui->tab_console->setCurrentIndex(0);
 
@@ -78,6 +85,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->ui_display->clear();
     u_welcome_mdle = new welcome_mdle;
     ui->ui_display->insertTab(0,u_welcome_mdle,"welcome");
+    // --------------------------------------------
+    // flow control win
+    u_flow_blck = new flow_blck;
+    connect(u_uvc_blck,&uvc_blck::bmp_trig,u_flow_blck,&flow_blck::m_bmp_in);
+    connect(u_flow_blck,&flow_blck::bmp_udp_trig,u_udp_subs,&udp_subs::m_send_udp_bmp);
+
+
+
 
 }
 
@@ -91,23 +106,6 @@ MainWindow::~MainWindow()
     delete u_uvc_blck;
     delete u_file_mdle;
     delete ui;
-}
-
-bool MainWindow::wait_signals(const char * signal, const unsigned int millisecond)
-{
-    bool result = true;
-
-    QEventLoop loop;
-    connect(this, signal, &loop, SLOT(quit()));
-
-    QTimer timer;
-    timer.setSingleShot(true);
-    connect(&timer, &QTimer::timeout, [&loop, &result]{ result = false; loop.quit();});
-    timer.start(millisecond);
-
-    loop.exec();
-    timer.stop();
-    return result;
 }
 
 void MainWindow::on_action_net_triggered()
@@ -221,5 +219,20 @@ void MainWindow::on_action_uvc_triggered()
 void MainWindow::on_action_file_triggered()
 {
     u_file_mdle->show();
+}
+
+
+void MainWindow::on_ui_flow_ctrl_clicked()
+{
+    ui->ui_display->insertTab(1,u_flow_blck,"flow_ctrl");
+    //ui->ui_display->setCurrentIndex(1);
+    ui->ui_display->setCurrentWidget(u_flow_blck);
+}
+
+
+void MainWindow::on_ui_flow_fpga_clicked()
+{
+    ui->ui_display->insertTab(2,u_fpga_subs,"fpga_set");
+    ui->ui_display->setCurrentWidget(u_fpga_subs);
 }
 
