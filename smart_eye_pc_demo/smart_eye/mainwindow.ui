@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1133</width>
+    <height>667</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="ui_win">
+   <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0">
+    <item>
+     <layout class="QVBoxLayout" name="ui_imag_reco" stretch="5,1">
+      <property name="spacing">
+       <number>7</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>1</number>
+      </property>
+      <property name="topMargin">
+       <number>1</number>
+      </property>
+      <property name="rightMargin">
+       <number>1</number>
+      </property>
+      <property name="bottomMargin">
+       <number>1</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="ui_ctrl" stretch="1,4">
+        <property name="spacing">
+         <number>5</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="ui_ctrl_flow">
+          <item>
+           <widget class="QToolBox" name="ui_flow">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="ui_flow_cnt">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>218</width>
+               <height>300</height>
+              </rect>
+             </property>
+             <attribute name="label">
+              <string>通信协议</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="ui_uart">
+                <property name="text">
+                 <string>串口通信</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QProgressBar" name="ui_uart_spd">
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="ui_net">
+                <property name="text">
+                 <string>网口通信</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QProgressBar" name="ui_net_spd">
+                <property name="maximum">
+                 <number>500</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="ui_uvc">
+                <property name="text">
+                 <string>监控通信</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QProgressBar" name="ui_uvc_spd">
+                <property name="maximum">
+                 <number>500</number>
+                </property>
+                <property name="value">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="ui_flow_load">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>218</width>
+               <height>300</height>
+              </rect>
+             </property>
+             <attribute name="label">
+              <string>数据加载</string>
+             </attribute>
+             <widget class="QPushButton" name="ui_flow_ctrl">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>50</y>
+                <width>89</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>流程管理</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="ui_flow_fpga">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>100</y>
+                <width>89</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>FPGA配置</string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="ui_flow_solve">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>218</width>
+               <height>300</height>
+              </rect>
+             </property>
+             <attribute name="label">
+              <string>数据处理</string>
+             </attribute>
+             <widget class="QPushButton" name="ui_signal">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>20</y>
+                <width>89</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>信号转存</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="ui_file_save">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>60</y>
+                <width>89</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>文件转存</string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="ui_imag_result">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>218</width>
+               <height>300</height>
+              </rect>
+             </property>
+             <attribute name="label">
+              <string>数据显示</string>
+             </attribute>
+             <widget class="QPushButton" name="ui_chart">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>20</y>
+                <width>89</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>坐标显示</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="ui_imag">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>60</y>
+                <width>89</width>
+                <height>24</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>图像显示</string>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="ui_show" stretch="0">
+          <item>
+           <layout class="QVBoxLayout" name="ui_show_1">
+            <item>
+             <layout class="QGridLayout" name="ui_show_2">
+              <item row="2" column="0">
+               <widget class="QTabWidget" name="ui_display">
+                <property name="currentIndex">
+                 <number>0</number>
+                </property>
+                <widget class="QWidget" name="tab">
+                 <attribute name="title">
+                  <string>Tab 1</string>
+                 </attribute>
+                </widget>
+                <widget class="QWidget" name="tab_2">
+                 <attribute name="title">
+                  <string>Tab 2</string>
+                 </attribute>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="ui_info">
+        <item>
+         <widget class="QTabWidget" name="tab_console">
+          <property name="tabPosition">
+           <enum>QTabWidget::South</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_info">
+           <attribute name="title">
+            <string>控制信息</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QTextBrowser" name="ui_info_log"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_protocol">
+           <attribute name="title">
+            <string>交互信息</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTextBrowser" name="ui_prot_log"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1133</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menufile">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="action_file"/>
+   </widget>
+   <widget class="QMenu" name="menumode">
+    <property name="title">
+     <string>模式</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuconnect">
+    <property name="title">
+     <string>链接</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuparameter">
+    <property name="title">
+     <string>参数</string>
+    </property>
+    <addaction name="action_net"/>
+    <addaction name="action_uart"/>
+    <addaction name="action_uvc"/>
+   </widget>
+   <widget class="QMenu" name="menuhelp">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+   </widget>
+   <addaction name="menufile"/>
+   <addaction name="menumode"/>
+   <addaction name="menuconnect"/>
+   <addaction name="menuparameter"/>
+   <addaction name="menuhelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="action_net">
+   <property name="text">
+    <string>网口</string>
+   </property>
+  </action>
+  <action name="action_uart">
+   <property name="text">
+    <string>串口</string>
+   </property>
+  </action>
+  <action name="action_uvc">
+   <property name="text">
+    <string>监控</string>
+   </property>
+  </action>
+  <action name="action_file">
+   <property name="text">
+    <string>配置</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
