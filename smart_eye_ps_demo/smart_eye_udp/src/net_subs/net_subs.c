@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //////////////////////////////////////////////////////////////////////////////////
 // Company: Fpga Publish
 // Engineer: F 
@@ -17,6 +18,8 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+=======
+>>>>>>> origin/develop
 #include "net_subs.h"
 #include "../MACRO.h"
 #include "string.h"
@@ -51,7 +54,11 @@ int decode_bmp_file()
     pkg_send.pkg_len  = 20;
     pkg_send.pkg_wid  = pkg_send.pkg_wid << 16 | 1;
     char str1[] = "Receive BMP at.";
+<<<<<<< HEAD
     char str2[] = "\n\r"
+=======
+    char str2[] = "\n\r";
+>>>>>>> origin/develop
     char *str=(char*)malloc(strlen(str1) + 4 + strlen(str2));
     sprintf(str,"%s%d%s",str1,pkg_recv.pkg_wid,str2);
     strcpy((char *)pkg_send.pkg_dat,str);

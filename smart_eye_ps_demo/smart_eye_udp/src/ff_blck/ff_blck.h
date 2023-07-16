@@ -8,6 +8,14 @@ int ff_sd_wr(char *name_file,
             uint32 len_file,
             uint8 md_write //0:wrtie from head, 1: write from end
             );
+<<<<<<< HEAD
 int ff_sd_rd(char *name_file,uint32 addr_file,uint32 len_file);
 
 #endif
+=======
+int ff_sd_rd(char *name_file,
+			uint32 addr_file,
+			uint32 len_file);
+
+#endif
+>>>>>>> origin/develop
