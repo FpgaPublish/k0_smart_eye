@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../src/flow_blck/flow_blck.h"
+#include "../../../smart_eye_pc_work/smart_eye_win/src/flow_blck/flow_blck.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_flow_blck_t {
-    QByteArrayData data[5];
-    char stringdata0[39];
+    QByteArrayData data[6];
+    char stringdata0[59];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,10 +35,12 @@ QT_MOC_LITERAL(0, 0, 9), // "flow_blck"
 QT_MOC_LITERAL(1, 10, 12), // "bmp_udp_trig"
 QT_MOC_LITERAL(2, 23, 0), // ""
 QT_MOC_LITERAL(3, 24, 5), // "p_bmp"
-QT_MOC_LITERAL(4, 30, 8) // "m_bmp_in"
+QT_MOC_LITERAL(4, 30, 8), // "m_bmp_in"
+QT_MOC_LITERAL(5, 39, 19) // "on_ui_close_clicked"
 
     },
-    "flow_blck\0bmp_udp_trig\0\0p_bmp\0m_bmp_in"
+    "flow_blck\0bmp_udp_trig\0\0p_bmp\0m_bmp_in\0"
+    "on_ui_close_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -48,7 +50,7 @@ static const uint qt_meta_data_flow_blck[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -56,16 +58,18 @@ static const uint qt_meta_data_flow_blck[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   24,    2, 0x06 /* Public */,
+       1,    1,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    1,   27,    2, 0x0a /* Public */,
+       4,    1,   32,    2, 0x0a /* Public */,
+       5,    0,   35,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -78,6 +82,7 @@ void flow_blck::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         switch (_id) {
         case 0: _t->bmp_udp_trig((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->m_bmp_in((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 2: _t->on_ui_close_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -121,13 +126,13 @@ int flow_blck::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

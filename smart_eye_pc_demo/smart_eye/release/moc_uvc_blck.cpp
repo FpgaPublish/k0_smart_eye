@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../src/uvc_blck/uvc_blck.h"
+#include "../../../smart_eye_pc_work/smart_eye_win/src/uvc_blck/uvc_blck.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #include <QtCore/QList>
@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_uvc_blck_t {
-    QByteArrayData data[10];
-    char stringdata0[129];
+    QByteArrayData data[11];
+    char stringdata0[149];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,13 +41,15 @@ QT_MOC_LITERAL(5, 48, 19), // "on_ui_write_clicked"
 QT_MOC_LITERAL(6, 68, 16), // "update_file_path"
 QT_MOC_LITERAL(7, 85, 14), // "QList<QString>"
 QT_MOC_LITERAL(8, 100, 16), // "recv_video_frame"
-QT_MOC_LITERAL(9, 117, 11) // "QVideoFrame"
+QT_MOC_LITERAL(9, 117, 11), // "QVideoFrame"
+QT_MOC_LITERAL(10, 129, 19) // "on_ui_close_clicked"
 
     },
     "uvc_blck\0info_trig\0\0bmp_trig\0"
     "on_ui_read_clicked\0on_ui_write_clicked\0"
     "update_file_path\0QList<QString>\0"
-    "recv_video_frame\0QVideoFrame"
+    "recv_video_frame\0QVideoFrame\0"
+    "on_ui_close_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,7 +59,7 @@ static const uint qt_meta_data_uvc_blck[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,14 +67,15 @@ static const uint qt_meta_data_uvc_blck[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    4,   44,    2, 0x06 /* Public */,
-       3,    1,   53,    2, 0x06 /* Public */,
+       1,    4,   49,    2, 0x06 /* Public */,
+       3,    1,   58,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   56,    2, 0x08 /* Private */,
-       5,    0,   57,    2, 0x08 /* Private */,
-       6,    1,   58,    2, 0x0a /* Public */,
-       8,    1,   61,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    1,   63,    2, 0x0a /* Public */,
+       8,    1,   66,    2, 0x08 /* Private */,
+      10,    0,   69,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::UInt, QMetaType::UInt, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,
@@ -83,6 +86,7 @@ static const uint qt_meta_data_uvc_blck[] = {
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 7,    2,
     QMetaType::Void, 0x80000000 | 9,    2,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -99,6 +103,7 @@ void uvc_blck::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 3: _t->on_ui_write_clicked(); break;
         case 4: _t->update_file_path((*reinterpret_cast< QList<QString>(*)>(_a[1]))); break;
         case 5: _t->recv_video_frame((*reinterpret_cast< QVideoFrame(*)>(_a[1]))); break;
+        case 6: _t->on_ui_close_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -167,13 +172,13 @@ int uvc_blck::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }
