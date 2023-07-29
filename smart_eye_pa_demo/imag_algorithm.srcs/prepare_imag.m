@@ -1,3 +1,4 @@
+# read imag bmp and output it
 function [r] = prepare_imag(        %
                                     %i1, %path 
                                     %i2  %name
@@ -18,15 +19,15 @@ for i = 1 : numb
         l_name{j} = name{1};
     end
 end
-numb_file = j;
+numb_file = j
 
 # ================================================================================
 # plot imag 
-r{1} = cell(1); %init
 for i = 1 : numb_file
     im = imread(l_name{i});
     subplot(numb_file,1,i);
-    r{i} = imshow(im);
+    imshow(im);
+    r{i} = im;
     hold on;
 end
 
