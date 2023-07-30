@@ -19,6 +19,8 @@
 // ***********************************************************************************
 `timescale 1ns / 1ps
 `include "rgb888_to_ycbcr444.v"
+`include "./lib_vip/vip_read_imag.sv"
+//`define MD_TASK_RUN
 module tb_rgb888_to_ycbcr444 #(
     //mode
     parameter MD_SIM_ABLE = 0,
@@ -57,10 +59,13 @@ reg [24-1:0]  dat_fifo_ycbcr[W_IMG*H_IMG];
 integer w = W_IMG;
 integer h = H_IMG;
 
-logic [24-1:0]  dat;
-integer fid;
-integer err;
+logic [24-1:0]  dat = 0;
+integer fid = 0;
+integer err = 0;
 integer i,j,k,m;
+
+vip_read_imag c_rgb   = new("./data/rgb.dat",W_IMG,H_IMG  );
+vip_read_imag c_ycbcr = new("./data/ycbcr.dat",W_IMG,H_IMG);
 // --------------------------------------------------------------------
 // read task
 task img_read(output logic [24-1:0] dat_fifo [W_IMG*H_IMG],input string name);
@@ -114,36 +119,72 @@ task img_read(output logic [24-1:0] dat_fifo [W_IMG*H_IMG],input string name);
     $display("last read dat = %d",j);
     end
 endtask
+`ifdef MD_TASK_RUN
 initial 
-    begin
-        w_cnt <= 1'b0;
-        h_cnt <= 1'b0;
-        img_read(dat_fifo_rgb,"./data/rgb.dat");
-        ##1;
-        img_read(dat_fifo_ycbcr,"./data/ycbcr.dat");
-        ##1 s_img_rgb888_c_fsync = 1;
-        ##100;
-        repeat(H_IMG)
-        begin
-            ##1 s_img_rgb888_c_vsync = 1;
-            repeat(W_IMG)
-            begin
-                ##1 s_img_rgb888_c_hsync <= 1;
-                s_img_rgb888_r_mdat0 <= dat_fifo_rgb[w_cnt+h_cnt*H_IMG][7:0];
-                s_img_rgb888_g_mdat1 <= dat_fifo_rgb[w_cnt+h_cnt*H_IMG][15:8];
-                s_img_rgb888_b_mdat2 <= dat_fifo_rgb[w_cnt+h_cnt*H_IMG][23:16];
-                ##1
-                s_img_rgb888_c_hsync <= 0;
-                w_cnt <= (w_cnt >= W_IMG - 1) ? 0 : w_cnt + 1'b1;
-            end
-            ##1 s_img_rgb888_c_vsync = 0;
-            h_cnt <= h_cnt >= H_IMG - 1 ? 0 : h_cnt + 1'b1;
-        end
-        ##1 s_img_rgb888_c_fsync = 0;
-        ##100
-        $stop();
-    end
+begin
+    w_cnt <= 1'b0;
+    h_cnt <= 1'b0;
     
+    img_read(dat_fifo_rgb,"./data/rgb.dat");
+    ##1;
+    img_read(dat_fifo_ycbcr,"./data/ycbcr.dat");
+    ##1 s_img_rgb888_c_fsync = 1;
+    ##100;
+    repeat(H_IMG)
+    begin
+        ##1 s_img_rgb888_c_vsync = 1;
+        repeat(W_IMG)
+        begin
+            ##1 s_img_rgb888_c_hsync <= 1;
+            s_img_rgb888_r_mdat0 <= dat_fifo_rgb[w_cnt+h_cnt*W_IMG][7:0];
+            s_img_rgb888_g_mdat1 <= dat_fifo_rgb[w_cnt+h_cnt*W_IMG][15:8];
+            s_img_rgb888_b_mdat2 <= dat_fifo_rgb[w_cnt+h_cnt*W_IMG][23:16];
+            ##1
+            s_img_rgb888_c_hsync <= 0;
+            w_cnt <= (w_cnt >= W_IMG - 1) ? 0 : w_cnt + 1'b1;
+        end
+        ##1 s_img_rgb888_c_vsync = 0;
+        h_cnt <= h_cnt >= H_IMG - 1 ? 0 : h_cnt + 1'b1;
+    end
+    ##1 s_img_rgb888_c_fsync = 0;
+    ##100
+    $stop();
+end
+// --------------------------------------------------------------------
+// read class 
+
+`else
+initial 
+begin
+    w_cnt <= 1'b0;
+    h_cnt <= 1'b0;
+    //c_rgb   = new("./data/rgb.dat",W_IMG,H_IMG  );
+    //c_ycbcr = new("./data/ycbcr.dat",W_IMG,H_IMG);
+    ##100;
+    ##1 s_img_rgb888_c_fsync = 1;
+    repeat(H_IMG)
+    begin
+        
+        ##1 s_img_rgb888_c_vsync = 1;
+        repeat(W_IMG)
+        begin
+            ##1 s_img_rgb888_c_hsync <= 1;
+            dat = c_rgb.dat_fifo[w_cnt+h_cnt*W_IMG];
+            s_img_rgb888_r_mdat0 <= dat[7:0];
+            s_img_rgb888_g_mdat1 <= dat[15:8];
+            s_img_rgb888_b_mdat2 <= dat[23:16];
+            ##1
+            s_img_rgb888_c_hsync <= 0;
+            w_cnt <= (w_cnt >= W_IMG - 1) ? 0 : w_cnt + 1'b1;
+        end
+        ##1 s_img_rgb888_c_vsync = 0;
+        h_cnt <= h_cnt >= H_IMG - 1 ? 0 : h_cnt + 1'b1;
+    end
+    ##1 s_img_rgb888_c_fsync = 0;
+    ##100
+    $stop();
+end
+`endif
 // --------------------------------------------------------------------
 // img out
 
@@ -189,9 +230,15 @@ rgb888_to_ycbcr444 #(
 );
 // =============================================================
 // assertion to monitor 
+// --------------------------------------------------------------------
+// add monitor
+
 integer w_cnt_ck = 0;
 integer h_cnt_ck = 0;
 reg     r_img_ycbcr444_c_vsync = 0;
+reg    [23:0] r_ck_dat;
+reg    [23:0] r_rl_dat;
+reg           r_ck_syn;
 always@(posedge i_sys_clk)
 begin
     r_img_ycbcr444_c_vsync <= m_img_ycbcr444_c_vsync;
@@ -207,25 +254,51 @@ begin
 end
 always@(posedge i_sys_clk)
 begin
+    r_ck_dat <= c_ycbcr.dat_fifo[w_cnt_ck+h_cnt_ck*W_IMG];
+    r_rl_dat <= {m_img_ycbcr444_r_mdat2,m_img_ycbcr444_b_mdat1,m_img_ycbcr444_y_mdat0};
+    r_ck_syn <= m_img_ycbcr444_c_hsync;
+end
+always@(posedge i_sys_clk)
+begin
     if(w_img_ycbcr444_c_vsync_neg)
     begin
         h_cnt_ck <= (h_cnt_ck >= H_IMG - 1) ? 1'b0 :
                      h_cnt_ck + 1'b1;
     end
 end
+// --------------------------------------------------------------------
+// assert
+
 
 
 property ck_rgb_to_y;
+    `ifdef MD_TASK_RUN
     @(posedge i_sys_clk) m_img_ycbcr444_c_hsync 
-    |-> m_img_ycbcr444_y_mdat0 == dat_fifo_ycbcr[w_cnt_ck+h_cnt_ck*H_IMG][7:0];
+    |-> m_img_ycbcr444_y_mdat0 == dat_fifo_ycbcr[w_cnt_ck+h_cnt_ck*W_IMG][7:0];
+    `else 
+    @(posedge i_sys_clk) r_ck_syn 
+    |-> r_rl_dat[7:0] == r_ck_dat[7:0];
+    `endif
+
 endproperty
 property ck_rgb_to_b;
+    `ifdef MD_TASK_RUN
     @(posedge i_sys_clk) m_img_ycbcr444_c_hsync 
-    |-> m_img_ycbcr444_b_mdat1 == dat_fifo_ycbcr[w_cnt_ck+h_cnt_ck*H_IMG][15:8];
+    |-> m_img_ycbcr444_b_mdat1 == dat_fifo_ycbcr[w_cnt_ck+h_cnt_ck*W_IMG][15:8];
+    `else 
+    @(posedge i_sys_clk) r_ck_syn 
+    |-> r_rl_dat[15:8] == r_ck_dat[15:8];
+    `endif
+
 endproperty
 property ck_rgb_to_r;
-    @(posedge i_sys_clk) m_img_ycbcr444_c_hsync 
-    |-> m_img_ycbcr444_r_mdat2 == dat_fifo_ycbcr[w_cnt_ck+h_cnt_ck*H_IMG][23:16];
+    `ifdef MD_TASK_RUN
+   @(posedge i_sys_clk) m_img_ycbcr444_c_hsync 
+    |-> m_img_ycbcr444_r_mdat2 == dat_fifo_ycbcr[w_cnt_ck+h_cnt_ck*W_IMG][23:16];
+    `else 
+    @(posedge i_sys_clk) r_ck_syn 
+    |-> r_rl_dat[23:16] == r_ck_dat[23:16];
+    `endif
 endproperty
 as_ck_rgb_to_y: assert property(ck_rgb_to_y) else 
 begin
