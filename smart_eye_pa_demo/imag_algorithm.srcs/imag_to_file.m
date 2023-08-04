@@ -12,7 +12,6 @@ h = size(i2,1)
 w = size(i2,2)
 bar = waitbar(0,'load...');  %Creat process bar
 for row = 1 : h 
-
     D1 = lower(dec2hex(i2(row,:,1),2));
     D2 = lower(dec2hex(i2(row,:,2),2));
     D3 = lower(dec2hex(i2(row,:,3),2));
