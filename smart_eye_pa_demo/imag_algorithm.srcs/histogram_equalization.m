@@ -29,17 +29,17 @@ for i = 1 : 256
 end 
 
 # --------------------------------------------------------------------------------
-# get gray result
-gray_aver = zeros(h,w);
+# get gray equal result
+gray_equal = zeros(h,w);
 gray_y = (w * h) / 255;
 for i = 1 : h 
     for j = 1 : w 
-        gray_aver(i,j) = gray_sum(i1(i,j)+1) / gray_y;
+        gray_equal(i,j) = gray_sum(i1(i,j)+1) / gray_y;
     end 
     waitbar(i/h);
 end 
-gray_aver = uint8(gray_aver);
-r1 = gray_aver;
+gray_equal = uint8(gray_equal);
+r1 = gray_equal;
 
 # --------------------------------------------------------------------------------
 # close 

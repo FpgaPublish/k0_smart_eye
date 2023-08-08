@@ -34,14 +34,14 @@ module rgb888_to_ycbcr444 #(
     //system signals
     input           i_sys_clk   ,  
     input           i_sys_resetn,  
-    
+    //imag interface rgb888
     input                       s_img_rgb888_c_fsync,
     input                       s_img_rgb888_c_vsync,
     input                       s_img_rgb888_c_hsync,
     input  [WD_IMG_DATA-1:0]    s_img_rgb888_r_mdat0,
     input  [WD_IMG_DATA-1:0]    s_img_rgb888_g_mdat1,
     input  [WD_IMG_DATA-1:0]    s_img_rgb888_b_mdat2,
-    
+    //imag interface ycbcr444
     output                      m_img_ycbcr444_c_fsync,
     output                      m_img_ycbcr444_c_vsync,
     output                      m_img_ycbcr444_c_hsync,
