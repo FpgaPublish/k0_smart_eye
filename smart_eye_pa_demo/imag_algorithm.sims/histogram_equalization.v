@@ -44,11 +44,6 @@ module histogram_equalization #(
     input                       s_img_gray_c_vsync,
     input                       s_img_gray_c_hsync,
     input  [WD_IMG_DATA-1:0]    s_img_gray_y_mdat0,
-    //imag interface equal
-    output                      m_img_equal_c_fsync,
-    output                      m_img_equal_c_vsync,
-    output                      m_img_equal_c_hsync,
-    output [WD_IMG_DATA-1:0]    m_img_equal_y_mdat0,
     //bram interface
     output                      m_bram_gray_ena  ,
     output                      m_bram_gray_wea  ,
