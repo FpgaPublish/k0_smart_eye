@@ -43,8 +43,12 @@ module ips_bram #(
     
 );
 // --------------------------------------------------------------------
+// addr
+localparam NB_BRAM_ADR = 2 ** WD_BRAM_ADR;
+
+// --------------------------------------------------------------------
 // BRAM
-reg  [WD_BRAM_DAT-1:0] r_bram_fifo [0:WD_BRAM_ADR-1];
+reg  [WD_BRAM_DAT-1:0] r_bram_fifo     [0:NB_BRAM_ADR-1];
 reg  [WD_BRAM_DAT-1:0] r_bram_douta_dn [0:NB_BRAM_DLY-1];
 reg  [WD_BRAM_DAT-1:0] r_bram_doutb_dn [0:NB_BRAM_DLY-1];
 
@@ -52,17 +56,16 @@ reg  [WD_BRAM_DAT-1:0] r_bram_doutb_dn [0:NB_BRAM_DLY-1];
 // --------------------------------------------------------------------
 // write BRAM 
 integer k;
-always@(posedge s_bram_0_clka or posedge s_bram_0_clkb) //double clock to sim
+always@(posedge s_bram_0_clka) //double clock to sim
 begin
     if(!i_sys_resetn)
     begin
-        for(k = 0; k < WD_BRAM_ADR; k = k + 1)
-        begin:FOR_WD_BRAM_ADR
+        for(k = 0; k < NB_BRAM_ADR; k = k + 1)
+        begin:FOR_NB_BRAM_ADR
             r_bram_fifo[k] <= 1'b0;
         end
     end
-    if(s_bram_0_ena && s_bram_0_wea 
-    && s_bram_0_enb && s_bram_0_web   )
+    else if(s_bram_0_ena && s_bram_0_wea )
     begin
         if(s_bram_0_addra == s_bram_0_addrb)
         begin
@@ -70,49 +73,67 @@ begin
             r_bram_fifo[s_bram_0_addra] <= s_bram_0_dina; //a first write
         end
         else 
-            begin
-                r_bram_fifo[s_bram_0_addra] <= s_bram_0_dina;
-                r_bram_fifo[s_bram_0_addrb] <= s_bram_0_dinb;
-            end
-    end
-    else if(s_bram_0_ena && s_bram_0_wea)
-    begin
-        r_bram_fifo[s_bram_0_addra] <= s_bram_0_dina;
-    end
-    else if(s_bram_0_enb && s_bram_0_web)
-    begin
-        r_bram_fifo[s_bram_0_addrb] <= s_bram_0_dinb;
+        begin
+            r_bram_fifo[s_bram_0_addra] <= s_bram_0_dina;
+            
+        end
     end
 end
+always@(posedge s_bram_0_clkb) //double clock to sim
+begin
+    if(s_bram_0_enb && s_bram_0_web )
+    begin
+        if(s_bram_0_addra == s_bram_0_addrb)
+        begin
+            $dispaly("write and write same addr %d",s_bram_0_addrb);
+            r_bram_fifo[s_bram_0_addra] <= s_bram_0_dina; //a first write
+        end
+        else 
+        begin
+            r_bram_fifo[s_bram_0_addrb] <= s_bram_0_dinb;
+        end
+    end
+end
+
+
+
 generate genvar i;
     for(i = 0; i < NB_BRAM_DLY; i = i + 1)
     begin:FOR_NB_BRAM_DLY
-        always@(posedge s_bram_0_clka or posedge s_bram_0_clkb)
+        always@(posedge s_bram_0_clka)
         begin
             if(i == 0)
             begin
-                if(s_bram_0_ena 
-                && s_bram_0_enb  )
+                if(s_bram_0_ena )
                 begin
-                    if(s_bram_0_addra == s_bram_0_addrb)
-                    begin
-                        $dispaly("write and read same addr %d",s_bram_0_addrb);
-                        r_bram_douta_dn[i] <= r_bram_fifo[s_bram_0_addra];
-                        r_bram_doutb_dn[i] <= r_bram_fifo[s_bram_0_addrb];
-                    end
-                    else 
                     begin
                         r_bram_douta_dn[i] <= r_bram_fifo[s_bram_0_addra];
-                        r_bram_doutb_dn[i] <= r_bram_fifo[s_bram_0_addrb];
                     end
                 end
             end
             else //still update data
             begin
                 r_bram_douta_dn[i] <= r_bram_douta_dn[i-1];
+            end
+        end
+        always@(posedge s_bram_0_clkb)
+        begin
+            if(i == 0)
+            begin
+                if(s_bram_0_enb )
+                begin
+                    begin
+                        r_bram_doutb_dn[i] <= r_bram_fifo[s_bram_0_addrb];
+                    end
+                end
+            end
+            else //still update data
+            begin
                 r_bram_doutb_dn[i] <= r_bram_doutb_dn[i-1];
             end
         end
+        
+        
     end
     
 endgenerate

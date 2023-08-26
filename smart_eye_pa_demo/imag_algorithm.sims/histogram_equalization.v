@@ -18,6 +18,7 @@
 //         * 
 // Revision: 0.01 
 // Revision 0.01 - File Created
+//          1.1  - fix addr flag signal
 // Additional Comments:
 // 
 // *******************************************************************************
@@ -49,7 +50,7 @@ module histogram_equalization #(
     output                      m_bram_gray_wea  ,
     output  [WD_BRAM_ADR-1:0]   m_bram_gray_addra,
     output  [WD_BRAM_DAT-1:0]   m_bram_gray_dina ,
-    
+    //bram read
     output                      m_bram_gray_enb  ,
     output  [WD_BRAM_ADR-1:0]   m_bram_gray_addrb,
     input   [WD_BRAM_DAT-1:0]   m_bram_gray_doutb ,
@@ -101,14 +102,14 @@ reg                   r_gray_c_fsync;
 wire                  w_gray_c_fsync_pos;
 // ----------------------------------------------------------
 // add gray sum level
-reg                    r_bram_gray_ena  ;
-reg                    r_bram_gray_wea  ;
-reg  [WD_IMG_DATA-1:0] r_bram_gray_addra;
-reg  [WD_IMG_MAXS-1:0] r_bram_gray_dina ;  
+reg                    r_bram_gray_ena   = 0;
+reg                    r_bram_gray_wea   = 0;
+reg  [WD_IMG_DATA-1:0] r_bram_gray_addra = 0;
+reg  [WD_IMG_MAXS-1:0] r_bram_gray_dina  = 0;  
 
-reg                    r_bram_gray_enb  ;
-reg  [WD_IMG_DATA-1:0] r_bram_gray_addrb;
-wire [WD_IMG_MAXS-1:0] w_bram_gray_doutb;  
+reg                    r_bram_gray_enb   = 0;
+reg  [WD_IMG_DATA-1:0] r_bram_gray_addrb = 0;
+wire [WD_IMG_MAXS-1:0] w_bram_gray_doutb ;  
 
 //========================================================
 //always and assign to drive logic and connect
@@ -173,6 +174,10 @@ begin
 end
 always@(posedge i_sys_clk)
 begin
+    if(w_gray_c_fsync_pos)
+    begin
+        r_bram_gray_addra <= 1'b0;
+    end
     if(1) //update in one cycle
     begin
         r_bram_gray_addra <= r_split_n_addr[r_split_cnt];
@@ -180,11 +185,6 @@ begin
 end
 always@(posedge i_sys_clk)
 begin
-    if(r_addr_first_flag[r_bram_gray_addra]) //update in one cycle
-    begin
-        r_bram_gray_dina <= r_split_n_numb[r_split_cnt] + 0; //init count
-    end
-    else 
     begin
         r_bram_gray_dina <= r_split_n_numb[r_split_cnt] + w_bram_gray_doutb;
     end
@@ -192,7 +192,7 @@ end
 assign m_bram_gray_ena   = r_bram_gray_ena  ;
 assign m_bram_gray_wea   = r_bram_gray_wea  ;
 assign m_bram_gray_addra = r_bram_gray_addra;
-assign m_bram_gray_dina  = r_bram_gray_dina ;
+assign m_bram_gray_dina  = r_addr_first_flag[r_bram_gray_addra] == 0 ? 0 : r_bram_gray_dina ;
 assign m_bram_gray_enb   = r_bram_gray_enb  ;
 assign m_bram_gray_addrb = r_bram_gray_addrb;
 assign w_bram_gray_doutb = m_bram_gray_doutb;
@@ -210,11 +210,11 @@ always@(posedge i_sys_clk)
 begin
     if(w_gray_c_fsync_pos) //update in one cycle
     begin
-        r_addr_first_flag <= {NB_IMG_DATA{1'b1}};
+        r_addr_first_flag <= {NB_IMG_DATA{1'b0}};
     end
     else if(r_bram_gray_wea  && r_bram_gray_ena)
     begin
-        r_addr_first_flag[r_bram_gray_addra] <= 1'b0;
+        r_addr_first_flag[r_bram_gray_addra] <= 1'b1;
     end
 end
 

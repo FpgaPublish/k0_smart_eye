@@ -136,11 +136,7 @@ histogram_equalization #(
     .s_img_gray_c_vsync(s_img_0_c_vsync),
     .s_img_gray_c_hsync(s_img_0_c_hsync),
     .s_img_gray_y_mdat0(s_img_0_y_mdat0),
-    //imag interface equal
-    .m_img_equal_c_fsync(m_img_1_c_fsync),
-    .m_img_equal_c_vsync(m_img_1_c_vsync),
-    .m_img_equal_c_hsync(m_img_1_c_hsync),
-    .m_img_equal_y_mdat0(m_img_1_y_mdat0),
+
     //bram interface
     .m_bram_gray_ena  (w_bram_0_ena  ),
     .m_bram_gray_wea  (w_bram_0_wea  ),
@@ -162,6 +158,7 @@ ips_bram #(
     .WD_BRAM_ADR(WD_BRAM_ADR),
     .WD_BRAM_DAT(WD_BRAM_DAT)
 )u_ips_bram(   
+    .i_sys_resetn(i_sys_resetn),
     //bram interface
     .s_bram_0_clka (w_bram_0_clka ),
     .s_bram_0_ena  (w_bram_0_ena  ),
@@ -180,5 +177,9 @@ ips_bram #(
 );
 // =============================================================
 // assertion to monitor 
+
+
+
+
 
 endmodule
