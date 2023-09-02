@@ -69,7 +69,6 @@ begin
     begin
         if(s_bram_0_addra == s_bram_0_addrb)
         begin
-            $dispaly("write and write same addr %d",s_bram_0_addrb);
             r_bram_fifo[s_bram_0_addra] <= s_bram_0_dina; //a first write
         end
         else 
@@ -85,7 +84,6 @@ begin
     begin
         if(s_bram_0_addra == s_bram_0_addrb)
         begin
-            $dispaly("write and write same addr %d",s_bram_0_addrb);
             r_bram_fifo[s_bram_0_addra] <= s_bram_0_dina; //a first write
         end
         else 

@@ -54,6 +54,11 @@ module histogram_equalization #(
     output                      m_bram_gray_enb  ,
     output  [WD_BRAM_ADR-1:0]   m_bram_gray_addrb,
     input   [WD_BRAM_DAT-1:0]   m_bram_gray_doutb ,
+    //BRAM read control
+    output                      s_bram_equal_idle ,
+    input                       s_bram_equal_enb  ,
+    input  [WD_BRAM_ADR-1:0]    s_bram_equal_addrb,
+    output [WD_BRAM_DAT-1:0]    s_bram_equal_doutb,
     
     //error info feedback
     output   [WD_ERR_INFO-1:0]  m_err_histogram_info1
@@ -110,6 +115,8 @@ reg  [WD_IMG_MAXS-1:0] r_bram_gray_dina  = 0;
 reg                    r_bram_gray_enb   = 0;
 reg  [WD_IMG_DATA-1:0] r_bram_gray_addrb = 0;
 wire [WD_IMG_MAXS-1:0] w_bram_gray_doutb ;  
+// ----------------------------------------------------------
+// bram read control
 
 //========================================================
 //always and assign to drive logic and connect
@@ -151,6 +158,10 @@ endgenerate
 //read logic
 always@(posedge i_sys_clk)
 begin
+    if(!s_img_gray_c_fsync)
+    begin
+        r_bram_gray_enb <= s_bram_equal_enb;
+    end
     if(1) //update in one cycle
     begin
         r_bram_gray_enb <= s_img_gray_c_hsync; //start read current level
@@ -158,6 +169,10 @@ begin
 end
 always@(posedge i_sys_clk)
 begin
+    if(!s_img_gray_c_fsync)
+    begin
+        r_bram_gray_addrb <= s_bram_equal_addrb;
+    end
     if(1) //update in one cycle
     begin
         r_bram_gray_addrb <= s_img_gray_y_mdat0;//addr is random
@@ -217,6 +232,11 @@ begin
         r_addr_first_flag[r_bram_gray_addra] <= 1'b1;
     end
 end
+// ----------------------------------------------------------
+// bram control
+assign s_bram_equal_idle  = ~r_gray_c_fsync;
+assign s_bram_equal_doutb = m_bram_gray_doutb;
+
 
 //========================================================
 //module and task to build part of system
@@ -265,6 +285,7 @@ begin
     end
 end
 endtask
+
 //========================================================
 //expand and plug-in part with version 
 

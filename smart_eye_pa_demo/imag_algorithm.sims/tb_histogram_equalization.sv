@@ -27,8 +27,8 @@ module tb_histogram_equalization #(
 
     //img info
     parameter NB_BRAM_DLY = 2 , //1~4
-    parameter NB_IMG_HORI = 960,
-    parameter NB_IMG_VERT = 640,
+    parameter NB_IMG_HORI = 480,
+    parameter NB_IMG_VERT = 320,
     //bram width
     parameter WD_BRAM_ADR = 8,
     parameter WD_BRAM_DAT = 32,
@@ -84,6 +84,12 @@ begin
         h_cnt <= h_cnt >= NB_IMG_VERT - 1 ? 0 : h_cnt + 1'b1;
     end
     ##1 s_img_0_c_fsync = 0;
+    
+    // --------------------------------------------------------------------
+    // start second step
+    
+    
+    
     ##100
     $stop();
 end
