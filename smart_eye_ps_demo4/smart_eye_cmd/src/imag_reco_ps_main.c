@@ -38,6 +38,7 @@
 #include "lwip/init.h"
 #include "lwip/inet.h"
 #include "xil_cache.h"
+#include "MACRO.h"
 
 #if LWIP_DHCP==1
 #include "lwip/dhcp.h"
@@ -47,9 +48,7 @@ extern volatile int dhcp_timoutcntr;
 extern volatile int TcpFastTmrFlag;
 extern volatile int TcpSlowTmrFlag;
 
-#define DEFAULT_IP_ADDRESS	"192.168.1.10"
-#define DEFAULT_IP_MASK		"255.255.255.0"
-#define DEFAULT_GW_ADDRESS	"192.168.1.1"
+
 
 void platform_enable_interrupts(void);
 void start_application(void);
@@ -192,6 +191,8 @@ int main(void)
 			tcp_slowtmr();
 			TcpSlowTmrFlag = 0;
 		}
+		//xil_printf("hello PL by   UART\n\r");
+
 		xemacif_input(netif);
 	}
 

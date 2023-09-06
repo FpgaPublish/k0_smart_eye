@@ -93,7 +93,5 @@ struct perf_stats {
 /* seconds between periodic bandwidth reports */
 #define INTERIM_REPORT_INTERVAL 5
 
-/* server port to listen on/connect to */
-#define UDP_CONN_PORT 5001
 
 #endif /* __UDP_PERF_SERVER_H_ */

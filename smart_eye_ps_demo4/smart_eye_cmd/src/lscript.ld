@@ -21,6 +21,14 @@ _EL2_STACK_SIZE = DEFINED(_EL2_STACK_SIZE) ? _EL2_STACK_SIZE : 1024;
 
 MEMORY
 {
+   axi_bram_ctrl_0_Mem0 : ORIGIN = 0x80000000, LENGTH = 0x10000
+   axi_bram_ctrl_1_Mem0 : ORIGIN = 0x80010000, LENGTH = 0x10000
+   axi_bram_ctrl_2_Mem0 : ORIGIN = 0x80020000, LENGTH = 0x10000
+   axi_bram_ctrl_3_Mem0 : ORIGIN = 0x80030000, LENGTH = 0x10000
+   axi_bram_ctrl_4_Mem0 : ORIGIN = 0x80040000, LENGTH = 0x10000
+   axi_bram_ctrl_5_Mem0 : ORIGIN = 0x80050000, LENGTH = 0x10000
+   axi_bram_ctrl_6_Mem0 : ORIGIN = 0x80060000, LENGTH = 0x10000
+   axi_bram_ctrl_7_Mem0 : ORIGIN = 0x80070000, LENGTH = 0x10000
    psu_ddr_0_MEM_0 : ORIGIN = 0x0, LENGTH = 0x7FF00000
    psu_ocm_ram_0_MEM_0 : ORIGIN = 0xFFFC0000, LENGTH = 0x40000
    psu_qspi_linear_0_MEM_0 : ORIGIN = 0xC0000000, LENGTH = 0x20000000
@@ -35,7 +43,6 @@ ENTRY(_vector_table)
 SECTIONS
 {
 .text : {
-   . = ALIGN(2048);
    KEEP (*(.vectors))
    *(.boot)
    *(.text)
