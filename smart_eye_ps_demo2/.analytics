@@ -1,0 +1,4 @@
+timestamp=[2023-09-03 14:12:35], mode=WORKBENCH_START, duration=0:00:02.579, duration_ms=2579, data={}
+timestamp=[2023-09-03 14:12:35], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.016, duration_ms=16, data={}
+timestamp=[2023-09-03 14:12:35], mode=WORKBENCH_UI_INIT, duration=0:00:00.184, duration_ms=184, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2023-09-03 14:13:19], mode=APP_CREATION, duration=0:00:08.342, duration_ms=8342, data={name=smart_sys, project_type=sdk, os=standalone, processor=psu_cortexa53, runtime=cpp, platform=smart_eye_zu2_top_v402_090311, application_type=application}

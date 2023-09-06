@@ -1,0 +1,97 @@
+/*
+
+Xilinx Vitis v2021.1.0 (64-bit) [Major: 2021, Minor: 1]
+SW Build 3245906 on 2021-06-09-18:10:55
+
+Process ID (PID): 311987
+License: Customer
+
+Current time: 	Sun Sep 03 14:12:35 CST 2023
+Time zone: 	China Standard Time (Asia/Shanghai)
+
+OS: Ubuntu
+OS Version: 6.2.0-26-generic
+OS Architecture: amd64
+Available processors (cores): 24
+
+Display: :0
+Screen size: 1920x1080
+Available screens: 1
+Available disk space: 1,515 GB
+
+Java version: 	11.0.2 64-bit
+Java home: 	/tools/Xilinx/Vitis/2021.1/tps/lnx64/jre11.0.2
+Java executable location: 	/tools/Xilinx/Vitis/2021.1/tps/lnx64/jre11.0.2/bin/java
+Java initial memory (-Xms): 	64 MB
+Java maximum memory (-Xmx):	 1,024 MB
+
+Java library paths: /tools/Xilinx/Vitis/2021.1/tps/lnx64/javafx-sdk-11.0.2/lib:/tools/Xilinx/Vitis/2021.1/lib/lnx64.o/Ubuntu:/tools/Xilinx/Vitis/2021.1/lib/lnx64.o:/tools/Xilinx/Vitis/2021.1/tps/lnx64/jre11.0.2/lib/:/tools/Xilinx/Vitis/2021.1/tps/lnx64/jre11.0.2/lib//server:/tools/Xilinx/Vitis/2021.1/lib/lnx64.o:/tools/Xilinx/Vitis/2021.1/lib/lnx64.o/Ubuntu:/tools/Xilinx/Vitis/2021.1/lib/lnx64.o:/tools/Xilinx/Vitis/2021.1/tps/lnx64/python-3.8.3/lib:/tools/Xilinx/Vitis/2021.1/aietools/lib/lnx64.o:/tools/Xilinx/Vitis/2021.1/bin/../lnx64/tools/dot/lib:/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib
+
+Java class paths: /tools/Xilinx/Vitis/2021.1/eclipse/lnx64.o//plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar
+LD_LIBRARY_PATH: /tools/Xilinx/Vitis
+
+User name: 	fpga
+User home directory: /home/fpga
+User working directory: /home/fpga/u1_library/k0_smart_eye/smart_eye_ps_demo2
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /tools/Xilinx/Vitis
+HDI_APPROOT: /tools/Xilinx/Vitis/2021.1
+RDI_DATADIR: /tools/Xilinx/Vitis/2021.1/data
+RDI_BINDIR: /tools/Xilinx/Vitis/2021.1/bin
+
+Vitis preferences directory: /home/fpga/.Xilinx/Vitis/2021.1/
+Vitis workspace directory: /home/fpga/u1_library/k0_smart_eye/smart_eye_ps_demo2
+Vitis workspace log file location: /home/fpga/u1_library/k0_smart_eye/smart_eye_ps_demo2/.metadata/.log
+Engine tmp dir: 	
+
+Xilinx Environment Variables
+----------------------------
+SF_VIVADO: /tools/Xilinx/Vivado/2021.1
+XILINX_DSP: 
+XILINX_HLS: /tools/Xilinx/Vitis_HLS/2021.1
+XILINX_PLANAHEAD: /tools/Xilinx/Vitis/2021.1
+XILINX_SDK: /tools/Xilinx/Vitis/2021.1
+XILINX_VITIS: /tools/Xilinx/Vitis/2021.1
+XILINX_VIVADO: /tools/Xilinx/Vivado/2021.1
+XILINX_VIVADO_HLS: /tools/Xilinx/Vivado/2021.1
+_RDI_DONT_SET_XILINX_AS_PATH: True
+
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+selectMenuItem("File", "WorkbenchWindow", "MenuItem.FILE");
+selectMenuItem("New", "WorkbenchWindow", "MenuItem.NEW");
+selectMenuItem("Application Project", "WorkbenchWindow", "MenuItem.APPLICATION_PROJECT");
+selectButton("Next", "New Application Project (Create a New Application Project)", "NewAppProjectWizard", "Button.NEXT");
+selectTab("Create a new platform from hardware", "New Application Project (Platform)", "NewAppProjectWizard", "CTabItem.CREATE_A_NEW_PLATFORM");
+selectButton("Browse", "New Application Project (Platform)", "NewAppProjectWizard", "Button.BROWSE");
+setFileDialog("/home/fpga/u1_library/k0_smart_eye/smart_eye_ps_demo2/smart_eye_zu2_top_v402_090311.xsa", "Create Platform from XSA", "SDXFileDialog", "Button.OK");
+selectButton("Next", "New Application Project (Platform)", "NewAppProjectWizard", "Button.NEXT");
+setTextField("smart_sys", "New Application Project (Application Project Details)", "NewAppProjectWizard", "Text.APPLICATION_PROJECT_NAME");
+selectButton("Next", "New Application Project (Application Project Details)", "NewAppProjectWizard", "Button.NEXT");
+selectButton("Next", "New Application Project (Domain)", "NewAppProjectWizard", "Button.NEXT");
+selectTreeTable("lwIP UDP Perf Client", "Embedded software development templates", "New Application Project (Templates)", "NewAppProjectWizard", "TreeViewer.TemplateContentProvider");
+selectTreeTable("lwIP UDP Perf Server", "Embedded software development templates", "New Application Project (Templates)", "NewAppProjectWizard", "TreeViewer.TemplateContentProvider");
+selectButton("Finish", "New Application Project (Templates)", "NewAppProjectWizard", "Button.FINISH");
+activateView("Explorer", "ProjectExplorer", "CTabItem.EXPLORER");
+selectMenuItem("Window", "smart_sys", "WorkbenchWindow", "MenuItem.WINDOW");
+selectMenuItem("Console", "smart_sys", "WorkbenchWindow", "MenuItem.CONSOLE");
+activateView("Console", "ConsoleView", "CTabItem.CONSOLE");
+selectToolBarButton("Wrap Lines", "Console", "ConsoleView", "ToolItem.WRAP_LINES");
+selectToolBarMenuButton("Display Selected Console", "Console", "ConsoleView", "ToolItem.DISPLAY_SELECTED");
+selectMenuItem("2 Platform Tcl Console", "Console", "WorkbenchWindow", "MenuItem.2_PLATFORM_TCL_CONSOLE");
+activateView("Console", "ConsoleView", "CTabItem.CONSOLE");
+selectMenuItem("©", "Console", "WorkbenchWindow", "MenuItem.©");
+activateView("Explorer", "ProjectExplorer", "CTabItem.EXPLORER");
+selectTreeTable("smart_sys_system", "Explorer", "ProjectExplorer", "TreeViewer.NavigatorContentServiceContentProvider");
+selectTreeTable("src", "smart_sys_system > smart_sys", EventType.DOUBLE_CLICK, "Explorer", "ProjectExplorer", "TreeViewer.NavigatorContentServiceContentProvider");
+activateView("Console", "ConsoleView", "CTabItem.CONSOLE");
+selectButton("Exit", "Confirm Exit", "MessageDialogWithToggle", "Button.EXIT");
+// Exiting Xilinx Vitis with a status code '0' at 9/3/23, 2:20:41 PM CST
+// Elapsed time: 00:08:05
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="smart_sys" location="/home/fpga/u1_library/k0_smart_eye/smart_eye_ps_demo2/smart_sys" platform="/home/fpga/u1_library/k0_smart_eye/smart_eye_ps_demo2/smart_eye_zu2_top_v402_090311/export/smart_eye_zu2_top_v402_090311/smart_eye_zu2_top_v402_090311.xpfm" platformUID="xilinx:::0.0(custom)" systemProject="smart_sys_system" sysConfig="smart_eye_zu2_top_v402_090311" runtime="cpp" cpu="standalone_psu_cortexa53_0" cpuInstance="psu_cortexa53_0" os="standalone" mssSignature="cd2c9cb4c092a396a6a3e4c34278b663">
+  <configuration name="Debug" id="xilinx.gnu.arm.a53.exe.debug.629621841" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.arm.a53.exe.release.392890867" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="lwip_udp_perf_server" hasBspSettings="true"/>
+</sdkproject:SdkProject>

@@ -1,0 +1,13 @@
+14:12:35 INFO  : Launching XSCT server: xsct -n  -interactive /home/fpga/u1_library/k0_smart_eye/smart_eye_ps_demo2/temp_xsdb_launch_script.tcl
+14:12:35 INFO  : Platform repository initialization has completed.
+14:12:35 INFO  : Registering command handlers for Vitis TCF services
+14:12:37 INFO  : XSCT server has started successfully.
+14:12:37 INFO  : Successfully done setting XSCT server connection channel  
+14:12:37 INFO  : Successfully done setting workspace for the tool. 
+14:12:37 INFO  : plnx-install-location is set to ''
+14:12:37 INFO  : Successfully done query RDI_DATADIR 
+14:13:15 INFO  : Result from executing command 'getProjects': smart_eye_zu2_top_v402_090311
+14:13:15 INFO  : Result from executing command 'getPlatforms': 
+14:13:15 WARN  : An unexpected exception occurred in the module 'platform project logging'
+14:13:16 INFO  : Platform 'smart_eye_zu2_top_v402_090311' is added to custom repositories.
+14:13:19 INFO  : Platform 'smart_eye_zu2_top_v402_090311' is added to custom repositories.
