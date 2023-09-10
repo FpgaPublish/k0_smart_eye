@@ -1,5 +1,29 @@
 
 `timescale 1 ns / 1 ps
+`timescale 1ns / 1ps
+/*
+```verilog
+*/
+// *******************************************************************************
+// Company: Fpga Publish
+// Engineer: FP 
+// 
+// Create Date: 2023/09/09 20:52:21
+// Design Name: 
+// Module Name: axi_cmd_v1_0
+// Project Name: 
+// Target Devices: ZYNQ7010 | XCZU2CG | Kintex7
+// Tool Versions: 2021.1
+// Description: 
+//         * 
+// Dependencies: 
+//         * 
+// Revision: 0.01 
+// Revision 0.01 - File Created
+//          1.1  - fix slaver not match error
+// Additional Comments:
+// 
+// *******************************************************************************
 
 	module axi_cmd_v1_0 #
 	(
@@ -16,16 +40,16 @@
 	(
 		// Users to add ports here
         // Users to add ports here
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg0 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg1 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg2 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg3 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg4 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg5 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg6 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg7 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg8 ,
-        output  [C_S00_AXI_DATA_WIDTH-1:0]    O_slv_reg9 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg0 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg1 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg2 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg3 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg4 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg5 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg6 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg7 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg8 ,
+        output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg9 ,
         output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg10,
         output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg11,
         output  [C_S00_AXI_DATA_WIDTH-1:0]    o_slv_reg12,

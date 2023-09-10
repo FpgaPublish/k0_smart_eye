@@ -7,7 +7,7 @@
 // code work function 
 int decode_hello_ps();
 int decode_bmp_file();
-
+int decode_fpga_set();
 
 
 #endif

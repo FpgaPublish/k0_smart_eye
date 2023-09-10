@@ -71,6 +71,9 @@ static void udp_recv_perf_traffic(void *arg, struct udp_pcb *tpcb,
         decode_bmp_file();
         info_blck(CODE_BMP_FILE,"info","PS recv BMP file");
         break;
+    case CODE_FPGA_SET:
+    	decode_fpga_set();
+    	info_blck(CODE_FPGA_SET,"info","PS recv FPGA set");
     default:
         break;
     }

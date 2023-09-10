@@ -3,7 +3,7 @@
   <spirit:vendor>user.org</spirit:vendor>
   <spirit:library>user</spirit:library>
   <spirit:name>axi_cmd</spirit:name>
-  <spirit:version>1.0</spirit:version>
+  <spirit:version>1.1</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
       <spirit:name>S00_AXI</spirit:name>
@@ -266,7 +266,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a0746a20</spirit:value>
+            <spirit:value>faf0c8d3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -282,7 +282,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a0746a20</spirit:value>
+            <spirit:value>faf0c8d3</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -331,7 +331,7 @@
     </spirit:views>
     <spirit:ports>
       <spirit:port>
-        <spirit:name>O_slv_reg0</spirit:name>
+        <spirit:name>o_slv_reg0</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -355,7 +355,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg1</spirit:name>
+        <spirit:name>o_slv_reg1</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -379,7 +379,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg2</spirit:name>
+        <spirit:name>o_slv_reg2</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -403,7 +403,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg3</spirit:name>
+        <spirit:name>o_slv_reg3</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -427,7 +427,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg4</spirit:name>
+        <spirit:name>o_slv_reg4</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -451,7 +451,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg5</spirit:name>
+        <spirit:name>o_slv_reg5</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -475,7 +475,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg6</spirit:name>
+        <spirit:name>o_slv_reg6</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -499,7 +499,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg7</spirit:name>
+        <spirit:name>o_slv_reg7</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -523,7 +523,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg8</spirit:name>
+        <spirit:name>o_slv_reg8</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -547,7 +547,7 @@
         </spirit:vendorExtensions>
       </spirit:port>
       <spirit:port>
-        <spirit:name>O_slv_reg9</spirit:name>
+        <spirit:name>o_slv_reg9</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
@@ -3753,7 +3753,7 @@
       <spirit:file>
         <spirit:name>hdl/axi_cmd_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_6a6399a6</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_8d6b4791</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -3802,7 +3802,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/axi_cmd_v1_0.tcl</spirit:name>
+        <spirit:name>xgui/axi_cmd_v1_1.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_e5022a68</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
@@ -3816,7 +3816,7 @@
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>My new AXI IP</spirit:description>
+  <spirit:description>1.1  - fix slaver not match error</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>C_S00_AXI_DATA_WIDTH</spirit:name>
@@ -3886,9 +3886,12 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>axi_cmd_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>5</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-07-23T08:16:53Z</xilinx:coreCreationDateTime>
+      <xilinx:displayName>axi_cmd_v1.1</xilinx:displayName>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>user.org:user:axi_cmd:1.0</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2023-09-09T12:53:12Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.df@5fb00767_ARCHIVE_LOCATION">/home/fpga/u1_library/k0_smart_eye/smart_eye_pl_demo2/smart_eye_pl.cores/axi_cmd_1_0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@25d0477_ARCHIVE_LOCATION">/home/fpga/u1_library/k0_smart_eye/smart_eye_pl_demo2/smart_eye_pl.cores/axi_cmd_1_0</xilinx:tag>
@@ -3920,11 +3923,11 @@
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2021.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="b308c363"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="520cf312"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="22f7e21c"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="772d2b77"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="fa65ca8a"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="bcb37c3f"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="94dc70c5"/>
     </xilinx:packagingInfo>

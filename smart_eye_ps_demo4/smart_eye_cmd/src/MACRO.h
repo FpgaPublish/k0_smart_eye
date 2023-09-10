@@ -23,11 +23,13 @@
 #ifndef NET_MACRO_H
 #define NET_MACRO_H
 
+#include "xparameters.h"
 // ----------------------------------------------
 // command to PC
 #define CODE_HELLO_PS 0x12210000
 #define CODE_BMP_FILE 0x12210001
 
+#define CODE_FPGA_SET 0x13310000
 // -----------------------------------------------
 //add data type
 typedef unsigned int   uint32;
@@ -43,11 +45,12 @@ typedef unsigned long  uint64;
 
 // -----------------------------------------------
 // net struct
+#define PKG_LEN 960 
 struct SUdpPck{
     uint32 pkg_code;     //class code
     uint32 pkg_len ;     //one pkg length
     uint32 pkg_wid ;     //current pkg width
-    uint8  pkg_dat[960]; //pkg data
+    uint8  pkg_dat[PKG_LEN]; //pkg data
     uint32 pkg_xor;      //pkg xor
 };
 
@@ -59,6 +62,11 @@ struct SUdpPck{
 #define DEFAULT_IP_ADDRESS	"192.168.120.10"
 #define DEFAULT_IP_MASK		"255.255.255.0"
 #define DEFAULT_GW_ADDRESS	"192.168.120.1"
+// ----------------------------------------------
+// fpga set
+#define AXI_CMD_BASE_ADDR 0x80000000
+#define AXI_CMD_OFF1_ADDR 0x00000000
+
 
 #endif
 #endif
