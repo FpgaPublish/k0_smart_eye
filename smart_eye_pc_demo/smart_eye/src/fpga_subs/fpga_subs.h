@@ -31,6 +31,7 @@ private slots:
 private:
     QString p_fpga_file;
     QList<QString>l_fpga_set;
+
     const int row    = 32;
     const int column = 4 ;
 signals:

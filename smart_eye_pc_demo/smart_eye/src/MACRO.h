@@ -34,11 +34,12 @@
 #define CODE_FPGA_SET 0x13310000
 
 //add struct
+#define PKG_LEN 960
 struct SUdpPck{
     quint32 pkg_code;      //class code
     quint32 pkg_len ;      //one pkg length
     quint32 pkg_wid ;      //current pkg width
-    char    pkg_dat [960]; //pkg data
+    char    pkg_dat [PKG_LEN]; //pkg data
     quint32 pkg_xor ;      //pkg xor
 };
 Q_DECLARE_METATYPE(SUdpPck)

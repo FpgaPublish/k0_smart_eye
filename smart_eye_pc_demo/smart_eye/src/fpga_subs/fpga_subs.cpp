@@ -80,6 +80,20 @@ void fpga_subs::on_ui_rd_param_clicked()
              //delete item;
         }
     }
+    for(int i = 0; i < row;i++)
+    {
+        QTableWidgetItem *item = new QTableWidgetItem;
+
+        switch(i)
+        {
+            case 0: item->setText("0:imag set\n 1: rgb set \n 2: ycbcr set\n 3: size set"); break;
+            case 1: item->setText("led"); break;
+            default: item->setText("---"); break;
+        }
+        table->setItem(i,column,item);
+    }
+    table->resizeColumnsToContents(); //auto size
+    table->resizeRowsToContents();
 }
 void fpga_subs::on_ui_wr_param_clicked()
 {

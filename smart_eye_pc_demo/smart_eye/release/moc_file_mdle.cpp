@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../smart_eye_pc_work/smart_eye_win/src/file_mdle/file_mdle.h"
+#include "../src/file_mdle/file_mdle.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #include <QtCore/QList>
@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_file_mdle_t {
-    QByteArrayData data[8];
-    char stringdata0[117];
+    QByteArrayData data[7];
+    char stringdata0[95];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,13 +38,12 @@ QT_MOC_LITERAL(2, 20, 0), // ""
 QT_MOC_LITERAL(3, 21, 11), // "update_trig"
 QT_MOC_LITERAL(4, 33, 14), // "QList<QString>"
 QT_MOC_LITERAL(5, 48, 23), // "on_ui_write_set_clicked"
-QT_MOC_LITERAL(6, 72, 22), // "on_ui_read_set_clicked"
-QT_MOC_LITERAL(7, 95, 21) // "on_pushButton_clicked"
+QT_MOC_LITERAL(6, 72, 22) // "on_ui_read_set_clicked"
 
     },
     "file_mdle\0info_trig\0\0update_trig\0"
     "QList<QString>\0on_ui_write_set_clicked\0"
-    "on_ui_read_set_clicked\0on_pushButton_clicked"
+    "on_ui_read_set_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +53,7 @@ static const uint qt_meta_data_file_mdle[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,20 +61,18 @@ static const uint qt_meta_data_file_mdle[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    4,   39,    2, 0x06 /* Public */,
-       3,    1,   48,    2, 0x06 /* Public */,
+       1,    4,   34,    2, 0x06 /* Public */,
+       3,    1,   43,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   51,    2, 0x08 /* Private */,
-       6,    0,   52,    2, 0x08 /* Private */,
-       7,    0,   53,    2, 0x08 /* Private */,
+       5,    0,   46,    2, 0x08 /* Private */,
+       6,    0,   47,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::UInt, QMetaType::UInt, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,
     QMetaType::Void, 0x80000000 | 4,    2,
 
  // slots: parameters
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -92,7 +89,6 @@ void file_mdle::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 1: _t->update_trig((*reinterpret_cast< QList<QString>(*)>(_a[1]))); break;
         case 2: _t->on_ui_write_set_clicked(); break;
         case 3: _t->on_ui_read_set_clicked(); break;
-        case 4: _t->on_pushButton_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -154,13 +150,13 @@ int file_mdle::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 4;
     }
     return _id;
 }

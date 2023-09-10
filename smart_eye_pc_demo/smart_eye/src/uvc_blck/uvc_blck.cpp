@@ -2,7 +2,7 @@
 #include "ui_uvc_blck.h"
 
 #include <QDebug>
-
+#include <QThread>
 uvc_blck::uvc_blck(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::uvc_blck)
@@ -100,6 +100,9 @@ void uvc_blck::on_ui_read_clicked()
 
 void uvc_blck::on_ui_write_clicked()
 {
+    disconnect(vsd,SIGNAL(frame_trig(QVideoFrame))
+            ,this,SLOT(recv_video_frame(QVideoFrame)));
+    QThread::sleep(1);
     delete camera;
     camera = new QCamera(l_device_name[ui->ui_device->currentIndex()].toUtf8(),this);
     //rate set

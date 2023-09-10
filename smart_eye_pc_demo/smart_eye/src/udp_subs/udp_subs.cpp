@@ -191,21 +191,21 @@ void udp_subs::m_send_udp_dat(QString pns_dat,quint32 code)
             i ++;
         }
 
-        qDebug() << l_dat_hex;
+        //qDebug() << l_dat_hex;
         // --------------------------------------------
         // send data
         pkg_send.pkg_code = CODE_FPGA_SET;
-        pkg_send.pkg_len  = l_dat_hex.size() * 4;
+        pkg_send.pkg_len  = l_dat_hex.size() << 2;
         pkg_send.pkg_wid  = 1;
         pkg_send.pkg_xor  = 0;
-        qDebug() << l_dat_hex.size();
+        //qDebug() << l_dat_hex.size();
         pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
         for(int i = 0; i < l_dat_hex.size(); i++)
         {
-            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >> 24;
-            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >> 16;
-            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >>  8;
-            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >>  0;
+            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >>  0 & 0xff;
+            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >>  8 & 0xff;
+            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >> 16 & 0xff;
+            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >> 24 & 0xff;
             pkg_send.pkg_xor = pkg_send.pkg_xor ^ pkg_send.pkg_dat[i*4+0]
                                                 ^ pkg_send.pkg_dat[i*4+1]
                                                 ^ pkg_send.pkg_dat[i*4+2]
