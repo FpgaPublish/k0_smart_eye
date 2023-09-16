@@ -1,6 +1,7 @@
-/*_plan/*              
+/*_plan/**             
 /*_docx/*              
-/*_flow/*              
+/*_flow/*  
+!/*_plan/**/     
 !*.md                  
 !*.drawio      
 !*.odt        
